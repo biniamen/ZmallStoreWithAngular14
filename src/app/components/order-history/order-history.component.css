@@ -88,3 +88,25 @@ mat-row:hover {
   .mat-elevation-z8 {
     overflow: auto; /* If the table is longer, allow for scrolling */
   }
+
+  /* to make table and card parallel */
+  /* Adjust the top margin of the table container to bring it closer to the top element */
+.table-with-label {
+    margin-top: -25px; /* Adjust this value as needed */
+}
+
+/* If the card has a bottom margin, you can reduce it to bring it closer to the table */
+.card {
+    margin-bottom: 0; /* Adjust this value as needed */
+}
+
+/* Reduce the top padding of the table itself */
+.mat-elevation-z8 {
+    padding-top: 0; /* Adjust this value as needed */
+}
+
+/* Align the top of the card to the same level as the table header */
+.card-header {
+    margin-top: 0px; /* Adjust this value to align with table header */
+}
+  /* end */

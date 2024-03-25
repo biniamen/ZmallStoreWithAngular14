@@ -5,9 +5,9 @@
         <div class="login-content">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" name="login_form">
                 <h1 class="text-center" style="color: white;">Sign In</h1>
-                <div class="text-body text-opacity-50 text-center mb-4">
+                <!-- <div class="text-body text-opacity-50 text-center mb-4">
                     For your protection, please verify your identity.
-                </div>
+                </div> -->
                 <div class="mb-3">
                     <label class="form-label">Email Address <span class="text-danger">*</span></label>
                     <input type="email" formControlName="email" name="email" required class="form-control form-control-lg fs-body" value placeholder>

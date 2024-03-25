@@ -1,87 +1,215 @@
 <div class="table-container">
-
-
-    <div class="row">
-        <div class="table-buttons">
-            <button mat-raised-button (click)="printData()">Print</button>
-            <button mat-raised-button (click)="exportCSV()">Export to CSV</button>
+  <div class="row">
+    <div class="table-buttons">
+      <button mat-raised-button (click)="printData()">Print</button>
+      <button mat-raised-button (click)="exportCSV()">Export to CSV</button>
+    </div>
+    <div class="col-xl-8">
+      <div class="table-with-label">
+        <h2 class="corner-label">History</h2>
+        
+        <div class="search-container">
+          <mat-form-field appearance="standard">
+            <mat-label>Search</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              placeholder="Type to search..."
+            />
+          </mat-form-field>
         </div>
-        <div class="col-xl-8 ">
-            <div class="table-with-label">
-                <h2 class="corner-label">History</h2>
-                <div class="search-container">
-                    <mat-form-field appearance="standard">
-                      <mat-label>Search</mat-label>
-                      <input matInput (keyup)="applyFilter($event)" placeholder="Type to search...">
-                    </mat-form-field>
-                  </div>
-                <div class="mat-elevation-z8">
-                    <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
+        <div class="mat-elevation-z8">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            class="full-width-table"
+          >
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.unique_id }}
+              </td>
+            </ng-container>
 
-                        <!-- ID Column -->
-                        <ng-container matColumnDef="id">
-                            <th mat-header-cell *matHeaderCellDef> No. </th>
-                            <td mat-cell *matCellDef="let element"> {{element.unique_id}} </td>
-                        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="user">
+              <th mat-header-cell *matHeaderCellDef>User</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.user_detail.first_name }}
+              </td>
+            </ng-container>
 
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="user">
-                            <th mat-header-cell *matHeaderCellDef> User </th>
-                            <td mat-cell *matCellDef="let element"> {{element.user_detail.first_name}} </td>
-                        </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="deliveryman">
+              <th mat-header-cell *matHeaderCellDef>Deliveryman</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.accepted_by.username }}
+              </td>
+            </ng-container>
 
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="deliveryman">
-                            <th mat-header-cell *matHeaderCellDef> Deliveryman </th>
-                            <td mat-cell *matCellDef="let element"> {{element.accepted_by.username}} </td>
-                        </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.completed_at | date : "short" }}
+              </td>
+            </ng-container>
 
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef> Date </th>
-                            <td mat-cell *matCellDef="let element"> {{element.completed_at | date:'short'}} </td>
-                        </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef>Total</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.order_payment_detail.total }}
+              </td>
+            </ng-container>
 
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="total">
-                            <th mat-header-cell *matHeaderCellDef> Total </th>
-                            <td mat-cell *matCellDef="let element"> {{element.order_payment_detail.total}} </td>
-                        </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let element">
+                <span
+                  [ngClass]="{
+                    badge: true,
+                    'bg-danger':
+                      element.order_status === 104 ||
+                      element.order_status === 103,
+                    'bg-success': element.order_status === 25
+                  }"
+                >
+                  {{
+                    element.order_status === 104 || element.order_status === 103
+                      ? "Cancelled"
+                      : element.order_status === 25
+                      ? "Completed"
+                      : "Other Status"
+                  }}
+                </span>
+              </td>
+            </ng-container>
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let element">
+                <span
+                  class="badge bg-dark .rounded-5"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalXl"
+                  >View Detail</span
+                >
+              </td>
+            </ng-container>
 
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef> Status </th>
-                            <td mat-cell *matCellDef="let element">
-                                <span [ngClass]="{
-                                    'badge': true,
-                                    'bg-danger': element.order_status === 104 || element.order_status === 103,
-                                    'bg-success': element.order_status === 25
-                                }">
-                                    {{element.order_status === 104 || element.order_status === 103 ? 'Cancelled' : element.order_status === 25 ? 'Completed' : 'Other Status'}}
-                                </span>
-                            </td>
-                        </ng-container>
-                        <!-- Action Column -->
-                        <ng-container matColumnDef="action">
-                            <th mat-header-cell *matHeaderCellDef> Action </th>
-                            <td mat-cell *matCellDef="let element">
-                                <span class="badge bg-dark .rounded-5" data-bs-toggle="modal" data-bs-target="#modalXl">View Detail</span>
-                            </td>
-                        </ng-container>
+            <!-- Rows -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              (click)="onRowClicked(row)"
+              [class.selected]="selectedRow === row"
+            ></tr>
+          </table>
 
-                        <!-- Rows -->
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)" [class.selected]="selectedRow === row"></tr>
-                    </table>
-
-                    <!-- Paginator -->
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-                </div>
-            </div>
+          <!-- Paginator -->
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+          ></mat-paginator>
         </div>
+      </div>
+    </div>
 
-        <div class="col-xl-4">
-            <div class="card mb-xl-0 mb-3">
+    <div class="col-xl-4">
+      <div class="card">
+        <div class="card-header d-flex align-items-center bg-none fw-bold">
+          Payment Records
+          <a
+            href="#"
+            class="ms-auto text-decoration-none fs-13px text-body text-opacity-50"
+            ><i class="bi bi-paypal me-1 fa-lg"></i> Tele Birr USSD</a
+          >
+        </div>
+        <div class="card-body">
+          <table class="table table-borderless table-sm m-0">
+            <tbody>
+              <!-- User info -->
+              <strong>User Detail</strong>
+              <tr>
+                <td class="w-150px">Name</td>
+                <td>
+                  {{ selectedRow.user_detail.first_name }}
+                  {{ selectedRow.user_detail.last_name }}
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td class="fs-13px text-body text-opacity-50">
+                  {{ selectedRow.user_detail.email }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <hr class="m-0" />
+                </td>
+              </tr>
+              <!-- Order Detail -->
+              <strong>Order User Detail</strong>
+              <tr>
+                <td class="w-150px">Phone</td>
+                <td>{{ selectedRow.user_detail.phone }}</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td class="w-150px">
+                  Current Location ({{ selectedRow.order_payment_detail.total_distance | number:'1.0-2' }}) 
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <hr class="m-0" />
+                </td>
+              </tr>
+              <!-- Delivery Man Detail -->
+              <strong>DeliveryMan Detail</strong>
+              <tr>
+                <td class="w-150px">Name</td>
+                <!-- <td>
+                  {{ selectedRow[0].provider_detail.first_name }}
+                  {{ selectedRow[0].provider_detail.last_name }}
+                </td> -->
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td class="fs-13px text-body text-opacity-50">
+                  <!-- {{ selectedRow.provider_detail.email }} -->
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <hr class="m-0" />
+                </td>
+              </tr>
+              <tr>
+                <td class="pb-2" colspan="2"><b>Total</b></td>
+                <td class="text-end pb-2 text-decoration-underline">
+                  <b>{{selectedRow.order_payment_detail.total }}</b>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <hr class="m-0" />
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="card-footer bg-none d-flex p-3">
+          <a href="#" class="btn btn-outline-theme ms-auto">Mark as paid</a>
+        </div> -->
+      </div>
+      <!-- <div class="card mb-xl-0 mb-3">
                 <div class="card-header fw-bold">
                     {{currency_sign}} {{selectedRow.order_payment_detail.total }}
                 </div>
@@ -96,23 +224,168 @@
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
                 </div>
-            </div>
-        </div>
+            </div> -->
     </div>
-
+  </div>
 </div>
 
 <!-- detail modal -->
 <div class="modal fade" id="modalXl">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title fs-5">Extra large modal</div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title fs-5">Order Detail</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row ">
+            <!-- Order Detail -->
+            <div class="col-xl-4 col">
+                <div class="card">
+                    <div
+                      class="card-header d-flex align-items-center bg-none fw-bold">
+                      Payment Records
+                      <a href="#" class="ms-auto text-decoration-none fs-13px text-body text-opacity-50">
+                        <i class="bi bi-paypal me-1 fa-lg"></i> View paypal records</a>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-borderless table-sm m-0">
+                        <tbody>
+                          <tr>
+                            <td class="w-150px">Subtotal</td>
+                            <td>3 items</td>
+                          </tr>
+                          <tr>
+                            <td>Tax</td>
+                            <td>GST 5%</td>
+                          </tr>
+                          <tr>
+                            <td>Shipping Fee</td>
+                            <td>
+                              promo code:
+                              <u class="text-success fw-bold small">FREESHIPPING</u>
+                              
+                            </td>
+                            <td class="text-end">$0.00</td>
+                          </tr>
+                          <tr>
+                            <td class="pb-2" colspan="2"><b>Total</b></td>
+                            <td class="text-end pb-2 text-decoration-underline">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3">
+                              <hr class="m-0" />
+                            </td>
+                          </tr>    
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="card-footer bg-none d-flex p-3">
+                      <a href="#" class="btn btn-outline-theme ms-auto">Mark as paid</a>
+                    </div>
+                  </div>
             </div>
-            <div class="modal-body">
-                ...
+            <!-- Order Status -->
+            <div class="col-xl-4 col">
+                <div class="card">
+                    <div
+                      class="card-header d-flex align-items-center bg-none fw-bold">
+                      Payment Records
+                      <a href="#" class="ms-auto text-decoration-none fs-13px text-body text-opacity-50">
+                        <i class="bi bi-paypal me-1 fa-lg"></i> View paypal records</a>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-borderless table-sm m-0">
+                        <tbody>
+                          <tr>
+                            <td class="w-150px">Subtotal</td>
+                            <td>3 items</td>
+                          </tr>
+                          <tr>
+                            <td>Tax</td>
+                            <td>GST 5%</td>
+                          </tr>
+                          <tr>
+                            <td>Shipping Fee</td>
+                            <td>
+                              promo code:
+                              <u class="text-success fw-bold small">FREESHIPPING</u>
+                              
+                            </td>
+                            <td class="text-end">$0.00</td>
+                          </tr>
+                          <tr>
+                            <td class="pb-2" colspan="2"><b>Total</b></td>
+                            <td class="text-end pb-2 text-decoration-underline">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3">
+                              <hr class="m-0" />
+                            </td>
+                          </tr>    
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="card-footer bg-none d-flex p-3">
+                      <a href="#" class="btn btn-outline-theme ms-auto">Mark as paid</a>
+                    </div>
+                  </div>
+            </div>
+            <!-- Payment info -->
+            <div class="col-xl-4 col">
+                <div class="card">
+                    <div
+                      class="card-header d-flex align-items-center bg-none fw-bold">
+                      Payment Records
+                      <a href="#" class="ms-auto text-decoration-none fs-13px text-body text-opacity-50">
+                        <i class="bi bi-paypal me-1 fa-lg"></i> View paypal records</a>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-borderless table-sm m-0">
+                        <tbody>
+                          <tr>
+                            <td class="w-150px">Subtotal</td>
+                            <td>3 items</td>
+                          </tr>
+                          <tr>
+                            <td>Tax</td>
+                            <td>GST 5%</td>
+                          </tr>
+                          <tr>
+                            <td>Shipping Fee</td>
+                            <td>
+                              promo code:
+                              <u class="text-success fw-bold small">FREESHIPPING</u>
+                              
+                            </td>
+                            <td class="text-end">$0.00</td>
+                          </tr>
+                          <tr>
+                            <td class="pb-2" colspan="2"><b>Total</b></td>
+                            <td class="text-end pb-2 text-decoration-underline">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3">
+                              <hr class="m-0" />
+                            </td>
+                          </tr>    
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="card-footer bg-none d-flex p-3">
+                      <a href="#" class="btn btn-outline-theme ms-auto">Mark as paid</a>
+                    </div>
+                  </div>
             </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
