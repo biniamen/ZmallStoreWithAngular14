@@ -1,0 +1,9 @@
+.login {
+    background-image: url('../../../assets/img/bg/pattern.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .login-content {
+    color: white; /* This will change the text color to white */
+  }
