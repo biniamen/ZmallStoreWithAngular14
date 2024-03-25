@@ -1,0 +1,90 @@
+/* In your component.css */
+
+.table-container {
+    margin: 20px;
+  }
+
+  .table-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .full-width-table {
+    width: 100%;
+  }
+
+  /* Table container */
+.mat-elevation-z8 {
+    overflow: auto;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 8px -4px rgba(0,0,0,0.2); /* Reduce shadow intensity */
+  }
+
+  /* Table header */
+.mat-header-cell {
+    font-weight: bold; /* Make header text bold */
+  }
+
+  /* Table cells */
+.mat-cell {
+    color: rgba(0, 0, 0, 0.87); /* Make text color darker for readability */
+  }
+
+  .mat-header-cell, .mat-cell {
+    padding: 8px; /* Adjust the padding as needed */
+  }
+
+  .cancelled {
+    color: #f44336; /* Red color for cancelled status */
+  }
+
+  /* Paginator styling */
+.mat-paginator {
+    background: transparent;
+  }
+  /* You can also add styles for different status codes as needed */
+
+  .table-with-label {
+    position: relative;
+    margin-top: 2rem; /* Adjust to give space for the label */
+  }
+
+  .corner-label {
+    position: absolute;
+    top: -20px; /* Adjust as necessary */
+    left: 0;
+    background: #f1f3f4;
+    padding: 0 15px;
+    transform: translateY(-50%);
+    /* box-shadow: 0px 2px 4px rgba(0,0,0,0.1); */
+    margin: 0;
+    /* Any additional styles you want for your label */
+  }
+  /* Add this to your component's CSS file */
+mat-row:hover {
+    background-color: #f5f5f5; /* or any color you prefer */
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+  }
+  .selected {
+    background-color: #E0E0E0; /* Or any other color */
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .col-xl-8, .col-xl-4 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table-with-label, .card {
+    flex: 1; /* Make the table and card containers flex to fill the column height */
+  }
+
+  .mat-elevation-z8 {
+    overflow: auto; /* If the table is longer, allow for scrolling */
+  }
