@@ -91,10 +91,10 @@ mat-row:hover {
 
   /* to make table and card parallel */
   /* Adjust the top margin of the table container to bring it closer to the top element */
-.table-with-label {
-    margin-top: -25px; /* Adjust this value as needed */
-}
 
+.table-container {
+  margin-top: 35px;
+}
 /* If the card has a bottom margin, you can reduce it to bring it closer to the table */
 .card {
     margin-bottom: 0; /* Adjust this value as needed */

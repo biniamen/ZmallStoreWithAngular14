@@ -15,12 +15,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { CreateOrderComponent } from './components/create-order/create-order.component';
+import { CartService } from './services/cart.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     StoreloginComponent,
     HeadersidebarComponent,
     OrderHistoryComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,14 +39,16 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    
 
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
