@@ -1,4 +1,4 @@
-<div id="header" class="app-header">
+<div id="header" class="app-header" *ngIf="LoggedIn$">
 
     <div class="desktop-toggler">
       <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed"
@@ -20,7 +20,7 @@
 
     <div class="brand">
       <a href="index-2.html" class="brand-logo">
-        droplet
+        ZmallStore
       </a>
     </div>
 
@@ -32,161 +32,7 @@
           <div class="menu-icon"><i class="bi bi-search nav-icon"></i></div>
         </a>
       </div>
-      <div class="menu-item dropdown dropdown-mobile-full">
-        <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
-          <div class="menu-icon"><i class="bi bi-grid-3x3-gap nav-icon"></i></div>
-        </a>
-        <div class="dropdown-menu fade dropdown-menu-end w-300px text-center p-0 mt-1 overflow-hidden">
-          <div class="row gx-0 p-1 pb-0">
-            <div class="col-4">
-              <div class="h-100 p-1">
-                <a href="email_inbox.html" class="dropdown-item p-2 rounded-2">
-                  <div class="position-relative pt-1">
-                    <i
-                      class="bi bi-circle-fill position-absolute text-primary end-0 me-2 fs-6px d-block"></i>
-                    <i class="bi bi-envelope fs-2 d-block text-body text-opacity-50"></i>
-                  </div>
-                  <div class="small">Inbox</div>
-                </a>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="h-100 p-1">
-                <a href="pos_customer_order.html" target="_blank"
-                  class="dropdown-item p-2 rounded-2">
-                  <div class="position-relative pt-1">
-                    <i class="bi bi-hdd-network fs-2 d-block text-body text-opacity-50"></i>
-                  </div>
-                  <div class="small">Pos System</div>
-                </a>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="h-100 p-1">
-                <a href="calendar.html" class="dropdown-item p-2 rounded-2">
-                  <div class="position-relative pt-1">
-                    <i class="bi bi-calendar4 fs-2 d-block text-body text-opacity-50"></i>
-                  </div>
-                  <div class="small">Calendar</div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="row gx-0 p-1 pt-0">
-            <div class="col-4">
-              <div class="h-100 p-1">
-                <a href="helper.html" class="dropdown-item p-2 rounded-2">
-                  <div class="position-relative pt-1">
-                    <i class="bi bi-terminal fs-2 d-block text-body text-opacity-50"></i>
-                  </div>
-                  <div class="small">Helper</div>
-                </a>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="h-100 p-1">
-                <a href="settings.html" class="dropdown-item p-2 rounded-2">
-                  <div class="position-relative pt-1">
-                    <i
-                      class="bi bi-circle-fill position-absolute text-primary end-0 me-2 fs-6px d-block"></i>
-                    <i class="bi bi-sliders fs-2 d-block text-body text-opacity-50"></i>
-                  </div>
-                  <div class="small">Settings</div>
-                </a>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="h-100 p-1">
-                <a href="widgets.html" class="dropdown-item p-2 rounded-2">
-                  <div class="position-relative pt-1">
-                    <i class="bi bi-collection-play fs-2 d-block text-body text-opacity-50"></i>
-                  </div>
-                  <div class="small">Widgets</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-item dropdown dropdown-mobile-full">
-        <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
-          <div class="menu-icon"><i class="bi bi-bell nav-icon"></i></div>
-          <div class="menu-badge bg-theme"></div>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end mt-1 w-350px pt-1">
-          <h6 class="dropdown-header mb-1">Notifications (5)</h6>
-          <div class="dropdown-divider mt-1"></div>
-          <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
-            <div
-              class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
-              <i class="fa fa-box fa-lg text-primary"></i>
-            </div>
-            <div class="flex-1 flex-wrap ps-3">
-              <div>New order received ($1,299)</div>
-              <div class="small text-body text-opacity-50">just now</div>
-            </div>
-            <div class="ps-2 text-body text-opacity-25">
-              <i class="fa fa-chevron-right"></i>
-            </div>
-          </a>
-          <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
-            <div
-              class="fs-20px bg-body w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
-              <i class="fa fa-user text-body text-opacity-50"></i>
-            </div>
-            <div class="flex-1 flex-wrap ps-3">
-              <div>3 new account created</div>
-              <div class="small text-body text-opacity-50">2 minutes ago</div>
-            </div>
-            <div class="ps-2 text-body text-opacity-25">
-              <i class="fa fa-chevron-right"></i>
-            </div>
-          </a>
-          <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
-            <div
-              class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
-              <i class="fa fa-server text-primary"></i>
-            </div>
-            <div class="flex-1 flex-wrap ps-3">
-              <div>Setup completed</div>
-              <div class="small text-body text-opacity-50">3 minutes ago</div>
-            </div>
-            <div class="ps-2 text-body text-opacity-25">
-              <i class="fa fa-chevron-right"></i>
-            </div>
-          </a>
-          <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
-            <div
-              class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
-              <i class="fa fa-screwdriver-wrench text-primary"></i>
-            </div>
-            <div class="flex-1 flex-wrap ps-3">
-              <div>Widget installation done</div>
-              <div class="small text-body text-opacity-50">5 minutes ago</div>
-            </div>
-            <div class="ps-2 text-body text-opacity-25">
-              <i class="fa fa-chevron-right"></i>
-            </div>
-          </a>
-          <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
-            <div
-              class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
-              <i class="fa fa-file-invoice text-primary"></i>
-            </div>
-            <div class="flex-1 flex-wrap ps-3">
-              <div>Payment method enabled</div>
-              <div class="small text-body text-opacity-50">10 minutes ago</div>
-            </div>
-            <div class="ps-2 text-body text-opacity-25">
-              <i class="fa fa-chevron-right"></i>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <div class="text-center">
-            <a href="#" class="text-decoration-none fw-bold">see all</a>
-          </div>
-        </div>
-      </div>
+
       <div class="menu-item dropdown dropdown-mobile-full">
         <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
           <div class="menu-img online">
@@ -233,7 +79,7 @@
 
     <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
 
-      <div class="menu">
+      <div class="menu" *ngIf="storeInfo">
         <div class="menu-profile">
           <a href="javascript:;" class="menu-profile-link" data-bs-toggle="dropdown">
             <div class="menu-profile-cover with-shadow"></div>
@@ -241,15 +87,15 @@
               <div class="menu-profile-img" style="background-image: url(assets/img/user/user.jpg)">
               </div>
             </div>
-            <div class="menu-profile-info">
+            <div class="menu-profile-info" >
               <div class="d-flex align-items-center">
                 <div class="flex-grow-1 fw-bold">
-                  Administrator
+                  {{ storeInfo.name }}
                 </div>
                 <div class="ms-auto"><i class="fa fa-chevron-down"></i></div>
               </div>
               <small><span class="__cf_email__"
-                  data-cfemail="7b0e081e09151a161e3b1a1818140e150f55181416">[email&#160;protected]</span></small>
+                  data-cfemail="7b0e081e09151a161e3b1a1818140e150f55181416">{{ storeInfo.email }}</span></small>
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-end me-lg-3 mt-1 w-200px">
@@ -262,21 +108,27 @@
             <a class="dropdown-item d-flex align-items-center" href="settings.html"><i
                 class="fa fa-sliders fa-fw fa-lg me-3"></i> Settings</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item d-flex align-items-center" href="page_login.html"><i
+            <a class="dropdown-item d-flex align-items-center"  (click)="onLogout()"><i
                 class="fa fa-arrow-right-from-bracket fa-fw fa-lg me-3"></i> Logout</a>
           </div>
         </div>
         <div class="menu-header">Orders</div>
         <div class="menu-item ">
-          <a href="index-2.html" class="menu-link">
+          <a routerLink="create_order" class="menu-link">
             <span class="menu-icon"><i class="fa fa-cart-plus"></i></span>
             <span class="menu-text">Create Order</span>
           </a>
         </div>
         <div class="menu-item">
+          <a routerLink="orderhistory" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
+            <span class="menu-text">Orders</span>
+          </a>
+        </div>
+        <div class="menu-item">
           <a href="analytics.html" class="menu-link">
             <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
-            <span class="menu-text">Analytics</span>
+            <span class="menu-text">Deliveries</span>
           </a>
         </div>
         <div class="menu-item">
@@ -285,337 +137,43 @@
               <span class="menu-text">History</span>
             </a>
           </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon">
-              <i class="fa fa-envelope-open-text"></i>
-            </span>
-            <span class="menu-text">Email</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="email_inbox.html" class="menu-link">
-                <span class="menu-text">Inbox</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="email_compose.html" class="menu-link">
-                <span class="menu-text">Compose</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="email_detail.html" class="menu-link">
-                <span class="menu-text">Detail</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-header">Components</div>
+
+
+        <!-- <div class="menu-header">Components</div> -->
         <div class="menu-item">
           <a href="widgets.html" class="menu-link">
             <span class="menu-icon"><i class="fa fa-gem"></i></span>
-            <span class="menu-text">Widgets</span>
+            <span class="menu-text">Menu</span>
           </a>
-        </div>
-        <div class="menu-item has-sub">
-          <a href="javascript:;" class="menu-link">
-            <div class="menu-icon">
-              <i class="fa fa-wallet"></i>
-
-            </div>
-            <div class="menu-text d-flex align-items-center">POS System</div>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="pos_customer_order.html" target="_blank" class="menu-link">
-                <div class="menu-text">Customer Order</div>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="pos_kitchen_order.html" target="_blank" class="menu-link">
-                <div class="menu-text">Kitchen Order</div>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="pos_counter_checkout.html" target="_blank" class="menu-link">
-                <div class="menu-text">Counter Checkout</div>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="pos_table_booking.html" target="_blank" class="menu-link">
-                <div class="menu-text">Table Booking</div>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="pos_menu_stock.html" target="_blank" class="menu-link">
-                <div class="menu-text">Menu Stock</div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-palette"></i></span>
-            <span class="menu-text">UI Kits</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="ui_bootstrap.html" class="menu-link">
-                <span class="menu-text">Bootstrap</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="ui_buttons.html" class="menu-link">
-                <span class="menu-text">Buttons</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="ui_card.html" class="menu-link">
-                <span class="menu-text">Card</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="ui_icons.html" class="menu-link">
-                <span class="menu-text">Icons</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="ui_modal_notification.html" class="menu-link">
-                <span class="menu-text">Modal & Notification</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="ui_typography.html" class="menu-link">
-                <span class="menu-text">Typography</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="ui_tabs_accordions.html" class="menu-link">
-                <span class="menu-text">Tabs & Accordions</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-font"></i></span>
-            <span class="menu-text">Forms</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="form_elements.html" class="menu-link">
-                <span class="menu-text">Form Elements</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="form_plugins.html" class="menu-link">
-                <span class="menu-text">Form Plugins</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="form_wizards.html" class="menu-link">
-                <span class="menu-text">Wizards</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-border-all"></i></span>
-            <span class="menu-text">Tables</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="table_elements.html" class="menu-link">
-                <span class="menu-text">Table Elements</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="table_plugins.html" class="menu-link">
-                <span class="menu-text">Table Plugins</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-chart-pie"></i></span>
-            <span class="menu-text">Charts</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="chart_js.html" class="menu-link">
-                <span class="menu-text">Chart.js</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="chart_apex.html" class="menu-link">
-                <span class="menu-text">Apexcharts.js</span>
-              </a>
-            </div>
-          </div>
         </div>
         <div class="menu-item">
-          <a href="map.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-earth-asia"></i></span>
-            <span class="menu-text">Map</span>
+          <a href="widgets.html" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-gem"></i></span>
+            <span class="menu-text">Promo Code</span>
           </a>
         </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-clone"></i></span>
-            <span class="menu-text">Layout</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="layout_starter.html" class="menu-link">
-                <span class="menu-text">Starter Page</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="layout_fixed_footer.html" class="menu-link">
-                <span class="menu-text">Fixed Footer</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="layout_full_height.html" class="menu-link">
-                <span class="menu-text">Full Height</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="layout_full_width.html" class="menu-link">
-                <span class="menu-text">Full Width</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="layout_boxed_layout.html" class="menu-link">
-                <span class="menu-text">Boxed Layout</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="layout_collapsed_sidebar.html" class="menu-link">
-                <span class="menu-text">Collapsed Sidebar</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-item has-sub">
-          <a href="#" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-file-code"></i></span>
-            <span class="menu-text">Pages</span>
-            <span class="menu-caret"><b class="caret"></b></span>
-          </a>
-          <div class="menu-submenu">
-            <div class="menu-item">
-              <a href="page_scrum_board.html" class="menu-link">
-                <span class="menu-text">Scrum Board</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_products.html" class="menu-link">
-                <span class="menu-text">Products</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_product_details.html" class="menu-link">
-                <span class="menu-text">Product Details</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_orders.html" class="menu-link">
-                <span class="menu-text">Orders</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_order_details.html" class="menu-link">
-                <span class="menu-text">Order Details</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_gallery.html" class="menu-link">
-                <span class="menu-text">Gallery</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_search_results.html" class="menu-link">
-                <span class="menu-text">Search Results</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_coming_soon.html" class="menu-link">
-                <span class="menu-text">Coming Soon Page</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_404_error.html" class="menu-link">
-                <span class="menu-text">404 Error Page</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_login.html" class="menu-link">
-                <span class="menu-text">Login</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_register.html" class="menu-link">
-                <span class="menu-text">Register</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_messenger.html" class="menu-link">
-                <span class="menu-text">Messenger</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_data_management.html" class="menu-link">
-                <span class="menu-text">Data Management</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_file_manager.html" class="menu-link">
-                <span class="menu-text">File Manager</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a href="page_pricing.html" class="menu-link">
-                <span class="menu-text">Pricing Page</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-header">Users</div>
         <div class="menu-item">
-          <a href="profile.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-user"></i></span>
+          <a href="widgets.html" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-gem"></i></span>
             <span class="menu-text">Profile</span>
           </a>
         </div>
         <div class="menu-item">
-          <a href="calendar.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-calendar-day"></i></span>
-            <span class="menu-text">Calendar</span>
+          <a href="widgets.html" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-gem"></i></span>
+            <span class="menu-text">Setting</span>
           </a>
         </div>
+
         <div class="menu-item">
-          <a href="settings.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-sliders"></i></span>
-            <span class="menu-text">Settings</span>
+          <a href="widgets.html" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-gem"></i></span>
+            <span class="menu-text">Earning</span>
           </a>
         </div>
-        <div class="menu-item">
-          <a href="helper.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-info-circle"></i></span>
-            <span class="menu-text">Helper</span>
-          </a>
-        </div>
-      </div>
+
+
+
 
       <div class="p-3 mt-auto">
         <a href="documentation/index.html" target="_blank"

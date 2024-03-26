@@ -1,24 +1,23 @@
 
 
 <!-- Toolbar -->
-<div id="app" class="app" *ngIf="LoggedIn$ | async; else StoreLogin">
-
- <app-headersidebar></app-headersidebar>
-
-  <button class="app-sidebar-mobile-backdrop" data-toggle-target=".app"
-    data-toggle-class="app-sidebar-mobile-toggled"></button>
-
-
-    <div id="content" class="app-content">
-      <router-outlet></router-outlet>
-
-    </div>
-
-    <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
-  </div>
-  <ng-template #StoreLogin>
+<!-- Main App Container -->
+<div *ngIf="LoggedIn$ | async; else StoreLogin" class="app-container-with-sidebar">
+  <app-headersidebar></app-headersidebar>
+  <button class="app-sidebar-mobile-backdrop" data-toggle-target=".app" data-toggle-class="app-sidebar-mobile-toggled"></button>
+  <div id="content" class="app-content">
     <router-outlet></router-outlet>
-  </ng-template>
+  </div>
+  <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+</div>
+
+<!-- Login Layout -->
+<ng-template #StoreLogin>
+  <div class="login-container">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
   <!-- app.component.html -->
 <!-- <div id="app" class="app">
   <ng-container *ngIf="LoggedIn$ | async">

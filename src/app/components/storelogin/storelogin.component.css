@@ -1,9 +1,24 @@
 .login {
-    background-image: url('../../../assets/img/bg/pattern.jpg');
+    position: relative; /* Needed for pseudo-element positioning */
+    background-image: url('../../../assets/img/bg/login3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    color: white;
   }
+
+  .login::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); /* Adjust black overlay opacity as needed */
+    z-index: 1; /* Make sure the overlay is above the background image */
+  }
+
   .login-content {
-    color: white; /* This will change the text color to white */
+    position: relative; /* Make sure form and text are above the overlay */
+    z-index: 2;
   }

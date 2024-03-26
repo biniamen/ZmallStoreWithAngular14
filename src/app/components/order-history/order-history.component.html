@@ -7,7 +7,7 @@
     <div class="col-xl-8">
       <div class="table-with-label">
         <h2 class="corner-label">History</h2>
-        
+
         <div class="search-container">
           <mat-form-field appearance="standard">
             <mat-label>Search</mat-label>
@@ -45,8 +45,8 @@
             <ng-container matColumnDef="deliveryman">
               <th mat-header-cell *matHeaderCellDef>Deliveryman</th>
               <td mat-cell *matCellDef="let element">
-                {{ element.accepted_by.username }}
-              </td>
+                {{ element.provider_detail ? element.provider_detail.first_name : ' ' }}
+            </td>
             </ng-container>
 
             <!-- Symbol Column -->
@@ -120,7 +120,7 @@
       </div>
     </div>
 
-    <div class="col-xl-4">
+    <div class="col-xl-4" >
       <div class="card">
         <div class="card-header d-flex align-items-center bg-none fw-bold">
           Payment Records
@@ -162,7 +162,7 @@
               <tr>
                 <td>Address</td>
                 <td class="w-150px">
-                  Current Location ({{ selectedRow.order_payment_detail.total_distance | number:'1.0-2' }}) 
+                  Current Location ({{ selectedRow.order_payment_detail.total_distance | number:'1.0-2' }})
                 </td>
               </tr>
               <tr>
@@ -171,29 +171,31 @@
                 </td>
               </tr>
               <!-- Delivery Man Detail -->
-              <strong>DeliveryMan Detail</strong>
-              <tr>
-                <td class="w-150px">Name</td>
-                <!-- <td>
-                  {{ selectedRow[0].provider_detail.first_name }}
-                  {{ selectedRow[0].provider_detail.last_name }}
-                </td> -->
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td class="fs-13px text-body text-opacity-50">
-                  <!-- {{ selectedRow.provider_detail.email }} -->
-                </td>
-              </tr>
+
+                <strong>DeliveryMan </strong>
+                <tr>
+                  <td class="w-150px">Name</td>
+                  <td>
+                    {{ selectedRow.provider_detail ? selectedRow.provider_detail.first_name : ' ' }}
+                    {{ selectedRow.provider_detail ? selectedRow.provider_detail.last_name : ' ' }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td class="fs-13px text-body text-opacity-50">
+                    {{ selectedRow.provider_detail ? selectedRow.provider_detail.email : ' ' }}
+                  </td>
+                </tr>
+
               <tr>
                 <td colspan="3">
                   <hr class="m-0" />
                 </td>
               </tr>
-              <tr>
+              <tr class="total-row">
                 <td class="pb-2" colspan="2"><b>Total</b></td>
                 <td class="text-end pb-2 text-decoration-underline">
-                  <b>{{selectedRow.order_payment_detail.total }}</b>
+                  <b>{{selectedRow.order_payment_detail.total}}</b>
                 </td>
               </tr>
               <tr>
@@ -201,7 +203,7 @@
                   <hr class="m-0" />
                 </td>
               </tr>
-              
+
             </tbody>
           </table>
         </div>
@@ -244,13 +246,13 @@
       <div class="modal-body">
         <div class="row ">
             <!-- Order Detail -->
-            <div class="col-xl-4 col">
+            <div class="col-xl-4 col" *ngIf="selectedRow.cart_detail">
                 <div class="card">
                     <div
                       class="card-header d-flex align-items-center bg-none fw-bold">
                       Payment Records
                       <a href="#" class="ms-auto text-decoration-none fs-13px text-body text-opacity-50">
-                        <i class="bi bi-paypal me-1 fa-lg"></i> View paypal records</a>
+                        <i class="bi bi-paypal me-1 fa-lg"></i> {{currency_sign}}</a>
                     </div>
                     <div class="card-body">
                       <table class="table table-borderless table-sm m-0">
@@ -268,7 +270,7 @@
                             <td>
                               promo code:
                               <u class="text-success fw-bold small">FREESHIPPING</u>
-                              
+
                             </td>
                             <td class="text-end">$0.00</td>
                           </tr>
@@ -281,7 +283,7 @@
                             <td colspan="3">
                               <hr class="m-0" />
                             </td>
-                          </tr>    
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -315,7 +317,7 @@
                             <td>
                               promo code:
                               <u class="text-success fw-bold small">FREESHIPPING</u>
-                              
+
                             </td>
                             <td class="text-end">$0.00</td>
                           </tr>
@@ -328,7 +330,7 @@
                             <td colspan="3">
                               <hr class="m-0" />
                             </td>
-                          </tr>    
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -362,7 +364,7 @@
                             <td>
                               promo code:
                               <u class="text-success fw-bold small">FREESHIPPING</u>
-                              
+
                             </td>
                             <td class="text-end">$0.00</td>
                           </tr>
@@ -375,7 +377,7 @@
                             <td colspan="3">
                               <hr class="m-0" />
                             </td>
-                          </tr>    
+                          </tr>
                         </tbody>
                       </table>
                     </div>

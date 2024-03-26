@@ -20,7 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     StoreloginComponent,
     HeadersidebarComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
   ],
   imports: [
     BrowserModule,
