@@ -3,19 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedInSync());
+  adminUrl = environment.adminUrl;
 
 
   constructor(private http: HttpClient,private router: Router) {}
 
   // Call this method after successful login
   login(email: string, password: string): Observable<any> {
-    return this.http.post('http://196.189.44.49:7000/api/store/login', { email, password }).pipe(
+    return this.http.post(this.adminUrl+'/store/login', { email, password }).pipe(
       tap((response: any) => {
         if (response && response.store && response.store.server_token) {
           // Assuming server_token and _id are the properties you want to store

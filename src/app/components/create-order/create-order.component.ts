@@ -34,18 +34,31 @@ export class CreateOrderComponent implements OnInit {
   selectedItem: Item | undefined; // This will hold the item that was clicked
   cartCount = 0;
   isModalVisible: boolean = false;
-  constructor(private http: HttpClient, private router: Router,private cartService: CartService) {}
+  quantity: number = 1;
+  totalPrice!: number;
+  constructor(private http: HttpClient, private router: Router,private cartService: CartService) {
+
+
+  }
 
   ngOnInit(): void {
     this.get_store_product_item_list();
-    this.products = this.responseData.products[0].items.filter((item: { is_visible_in_store: any; }) => item.is_visible_in_store);
+    //this.products = this.responseData.products[0].items.filter((item: { is_visible_in_store: any; }) => item.is_visible_in_store);
     console.log(this.products)
     this.updateCartCount();
+    if (this.selectedItem && this.selectedItem.price) {
+      this.updateTotalPrice();
+    }
 
   }
+
   onSelectItem(item: Item): void {
     this.selectedItem = item;
+    // As soon as an item is selected, set the quantity to 1 and calculate the total price
+    this.quantity = 1;
+    this.totalPrice = this.selectedItem.price;
   }
+
   get_store_product_item_list() {
     const storeId = localStorage.getItem('store_id');
     const serverToken = localStorage.getItem('server_token');
@@ -53,7 +66,7 @@ export class CreateOrderComponent implements OnInit {
       server_token: serverToken,
       store_id: storeId,
     };
-    
+
     // Specify the response type
     this.http.post<StoreProductsResponse>(this.adminUrl + '/store/get_store_product_item_list', payload)
       .subscribe((response: StoreProductsResponse) => { // Use the interface here
@@ -75,5 +88,23 @@ export class CreateOrderComponent implements OnInit {
   }
   saveCart() {
     this.cartService.saveCart(this.selectedItem);
+  }
+
+  increaseQuantity() {
+    this.quantity++;
+    this.updateTotalPrice();
+  }
+
+  decreaseQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+      this.updateTotalPrice();
+    }
+  }
+  updateTotalPrice() {
+    if (this.selectedItem) {
+      this.totalPrice = this.quantity * this.selectedItem.price;
+
+    }
   }
 }

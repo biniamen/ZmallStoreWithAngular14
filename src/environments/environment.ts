@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  adminUrl: 'http://196.189.44.49:7000/api',
+  adminUrl: 'https://test.zmallapp.com/api',
 
 };
 

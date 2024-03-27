@@ -22,3 +22,10 @@
     position: relative; /* Make sure form and text are above the overlay */
     z-index: 2;
   }
+
+  .login-content .form-label,
+.login-content .form-check-label,
+.login-content a,
+.login-content .text-body {
+    color: white !important; /* Use !important to override any other styles if necessary */
+}

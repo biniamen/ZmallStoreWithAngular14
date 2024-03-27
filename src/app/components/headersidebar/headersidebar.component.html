@@ -1,45 +1,178 @@
 <div id="header" class="app-header" *ngIf="LoggedIn$">
 
-    <div class="desktop-toggler">
-      <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed"
-        data-toggle-target=".app">
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-    </div>
+  <div class="desktop-toggler">
+    <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed" data-toggle-target=".app">
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
 
 
-    <div class="mobile-toggler">
-      <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-mobile-toggled"
-        data-toggle-target=".app">
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-    </div>
+  <div class="mobile-toggler">
+    <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-mobile-toggled" data-toggle-target=".app">
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
 
 
-    <div class="brand">
-      <a href="index-2.html" class="brand-logo">
-        ZmallStore
+  <div class="brand">
+    <a href="index-2.html" class="brand-logo">
+      ZmallStore
+    </a>
+  </div>
+
+
+  <div class="menu">
+    <div class="menu-item dropdown">
+      <a href="index-2.html" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"
+        class="menu-link">
+        <div class="menu-icon"><i class="bi bi-search nav-icon"></i></div>
       </a>
     </div>
-
-
-    <div class="menu">
-      <div class="menu-item dropdown">
-        <a href="index-2.html" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"
-          class="menu-link">
-          <div class="menu-icon"><i class="bi bi-search nav-icon"></i></div>
-        </a>
-      </div>
-
-      <div class="menu-item dropdown dropdown-mobile-full">
-        <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
-          <div class="menu-img online">
-            <span class="menu-img-bg" style="background-image: url(assets/img/user/user.jpg)"></span>
+    <!-- Notification -->
+    <div class="menu-item dropdown dropdown-mobile-full">
+      <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
+        <div class="menu-icon"><i class="bi bi-bell nav-icon"></i></div>
+        <div class="menu-badge bg-theme"></div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end mt-1 w-350px pt-1">
+        <h6 class="dropdown-header mb-1">Notifications (5)</h6>
+        <div class="dropdown-divider mt-1"></div>
+        <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
+          <div
+            class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
+            <i class="fa fa-box fa-lg text-primary"></i>
           </div>
-          <div class="menu-text d d-none"><span class="__cf_email__"
-              data-cfemail="b5c0c6d0c7dbd4d8d0f5d4d6d6dac0dbc19bd6dad8">[email&#160;protected]</span>
+          <div class="flex-1 flex-wrap ps-3">
+            <div>New order received ($1,299)</div>
+            <div class="small text-body text-opacity-50">just now</div>
+          </div>
+          <div class="ps-2 text-body text-opacity-25">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
+          <div class="fs-20px bg-body w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
+            <i class="fa fa-user text-body text-opacity-50"></i>
+          </div>
+          <div class="flex-1 flex-wrap ps-3">
+            <div>3 new account created</div>
+            <div class="small text-body text-opacity-50">2 minutes ago</div>
+          </div>
+          <div class="ps-2 text-body text-opacity-25">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
+          <div
+            class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
+            <i class="fa fa-server text-primary"></i>
+          </div>
+          <div class="flex-1 flex-wrap ps-3">
+            <div>Setup completed</div>
+            <div class="small text-body text-opacity-50">3 minutes ago</div>
+          </div>
+          <div class="ps-2 text-body text-opacity-25">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
+          <div
+            class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
+            <i class="fa fa-screwdriver-wrench text-primary"></i>
+          </div>
+          <div class="flex-1 flex-wrap ps-3">
+            <div>Widget installation done</div>
+            <div class="small text-body text-opacity-50">5 minutes ago</div>
+          </div>
+          <div class="ps-2 text-body text-opacity-25">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="d-flex align-items-center dropdown-item text-wrap">
+          <div
+            class="fs-20px bg-primary bg-opacity-15 w-40px h-40px rounded-pill d-flex align-items-center justify-content-center">
+            <i class="fa fa-file-invoice text-primary"></i>
+          </div>
+          <div class="flex-1 flex-wrap ps-3">
+            <div>Payment method enabled</div>
+            <div class="small text-body text-opacity-50">10 minutes ago</div>
+          </div>
+          <div class="ps-2 text-body text-opacity-25">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </a>
+        <div class="dropdown-divider"></div>
+        <div class="text-center">
+          <a href="#" class="text-decoration-none fw-bold">see all</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item dropdown dropdown-mobile-full">
+      <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
+        <div class="menu-img online">
+          <span class="menu-img-bg" style="background-image: url(assets/img/user/user.jpg)"></span>
+        </div>
+        <div class="menu-text d d-none"><span class="__cf_email__"
+            data-cfemail="b5c0c6d0c7dbd4d8d0f5d4d6d6dac0dbc19bd6dad8">[email&#160;protected]</span>
+        </div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end me-lg-3 mt-1 w-200px">
+        <a class="dropdown-item d-flex align-items-center" href="profile.html"><i
+            class="far fa-user fa-fw fa-lg me-3"></i> Profile</a>
+        <a class="dropdown-item d-flex align-items-center" href="email_inbox.html"><i
+            class="far fa-envelope fa-fw fa-lg me-3"></i> Inbox</a>
+        <a class="dropdown-item d-flex align-items-center" href="calendar.html"><i
+            class="far fa-calendar fa-fw fa-lg me-3"></i> Calendar</a>
+        <a class="dropdown-item d-flex align-items-center" href="settings.html"><i
+            class="fa fa-sliders fa-fw fa-lg me-3"></i> Settings</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item d-flex align-items-center" (click)="onLogout()"><i
+            class="fa fa-arrow-right-from-bracket fa-fw fa-lg me-3"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+
+
+  <form class="menu-search" method="POST" name="header_search_form">
+    <div class="menu-search-container">
+      <div class="menu-search-icon"><i class="bi bi-search"></i></div>
+      <div class="menu-search-input">
+        <input type="text" class="form-control form-control-lg" placeholder="Search menu...">
+      </div>
+      <div class="menu-search-icon">
+        <a href="#" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"><i
+            class="bi bi-x-lg"></i></a>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+
+<div id="sidebar" class="app-sidebar">
+
+  <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+
+    <div class="menu" *ngIf="storeInfo">
+      <div class="menu-profile">
+        <a href="javascript:;" class="menu-profile-link" data-bs-toggle="dropdown">
+          <div class="menu-profile-cover with-shadow"></div>
+          <div class="menu-profile-image">
+            <div class="menu-profile-img" style="background-image: url(assets/img/user/user.jpg)">
+            </div>
+          </div>
+          <div class="menu-profile-info">
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1 fw-bold">
+                {{ storeInfo.name }}
+              </div>
+              <div class="ms-auto"><i class="fa fa-chevron-down"></i></div>
+            </div>
+            <small><span class="__cf_email__" data-cfemail="7b0e081e09151a161e3b1a1818140e150f55181416">{{
+                storeInfo.email }}</span></small>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end me-lg-3 mt-1 w-200px">
@@ -56,121 +189,65 @@
               class="fa fa-arrow-right-from-bracket fa-fw fa-lg me-3"></i> Logout</a>
         </div>
       </div>
-    </div>
-
-
-    <form class="menu-search" method="POST" name="header_search_form">
-      <div class="menu-search-container">
-        <div class="menu-search-icon"><i class="bi bi-search"></i></div>
-        <div class="menu-search-input">
-          <input type="text" class="form-control form-control-lg" placeholder="Search menu...">
-        </div>
-        <div class="menu-search-icon">
-          <a href="#" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"><i
-              class="bi bi-x-lg"></i></a>
-        </div>
+      <div class="menu-header">Orders</div>
+      <div class="menu-item ">
+        <a routerLink="create_order" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-cart-plus"></i></span>
+          <span class="menu-text">Create Order</span>
+        </a>
       </div>
-    </form>
-
-  </div>
-
-
-  <div id="sidebar" class="app-sidebar">
-
-    <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
-
-      <div class="menu" *ngIf="storeInfo">
-        <div class="menu-profile">
-          <a href="javascript:;" class="menu-profile-link" data-bs-toggle="dropdown">
-            <div class="menu-profile-cover with-shadow"></div>
-            <div class="menu-profile-image">
-              <div class="menu-profile-img" style="background-image: url(assets/img/user/user.jpg)">
-              </div>
-            </div>
-            <div class="menu-profile-info" >
-              <div class="d-flex align-items-center">
-                <div class="flex-grow-1 fw-bold">
-                  {{ storeInfo.name }}
-                </div>
-                <div class="ms-auto"><i class="fa fa-chevron-down"></i></div>
-              </div>
-              <small><span class="__cf_email__"
-                  data-cfemail="7b0e081e09151a161e3b1a1818140e150f55181416">{{ storeInfo.email }}</span></small>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end me-lg-3 mt-1 w-200px">
-            <a class="dropdown-item d-flex align-items-center" href="profile.html"><i
-                class="far fa-user fa-fw fa-lg me-3"></i> Profile</a>
-            <a class="dropdown-item d-flex align-items-center" href="email_inbox.html"><i
-                class="far fa-envelope fa-fw fa-lg me-3"></i> Inbox</a>
-            <a class="dropdown-item d-flex align-items-center" href="calendar.html"><i
-                class="far fa-calendar fa-fw fa-lg me-3"></i> Calendar</a>
-            <a class="dropdown-item d-flex align-items-center" href="settings.html"><i
-                class="fa fa-sliders fa-fw fa-lg me-3"></i> Settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item d-flex align-items-center"  (click)="onLogout()"><i
-                class="fa fa-arrow-right-from-bracket fa-fw fa-lg me-3"></i> Logout</a>
-          </div>
-        </div>
-        <div class="menu-header">Orders</div>
-        <div class="menu-item ">
-          <a routerLink="create_order" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-cart-plus"></i></span>
-            <span class="menu-text">Create Order</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a routerLink="orderhistory" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
-            <span class="menu-text">Orders</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a href="analytics.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
-            <span class="menu-text">Deliveries</span>
-          </a>
-        </div>
-        <div class="menu-item">
-            <a routerLink="orderhistory" class="menu-link">
-              <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
-              <span class="menu-text">History</span>
-            </a>
-          </div>
+      <div class="menu-item">
+        <a routerLink="orderhistory" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
+          <span class="menu-text">Orders</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a href="analytics.html" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
+          <span class="menu-text">Deliveries</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a routerLink="orderhistory" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
+          <span class="menu-text">History</span>
+        </a>
+      </div>
 
 
-        <!-- <div class="menu-header">Components</div> -->
-        <div class="menu-item">
-          <a href="widgets.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-gem"></i></span>
-            <span class="menu-text">Menu</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a href="widgets.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-gem"></i></span>
-            <span class="menu-text">Promo Code</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a href="widgets.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-gem"></i></span>
-            <span class="menu-text">Profile</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a href="widgets.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-gem"></i></span>
-            <span class="menu-text">Setting</span>
-          </a>
-        </div>
+      <!-- <div class="menu-header">Components</div> -->
+      <div class="menu-item">
+        <a href="widgets.html" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-gem"></i></span>
+          <span class="menu-text">Menu</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a href="widgets.html" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-gem"></i></span>
+          <span class="menu-text">Promo Code</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a href="widgets.html" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-gem"></i></span>
+          <span class="menu-text">Profile</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a href="widgets.html" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-gem"></i></span>
+          <span class="menu-text">Setting</span>
+        </a>
+      </div>
 
-        <div class="menu-item">
-          <a href="widgets.html" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-gem"></i></span>
-            <span class="menu-text">Earning</span>
-          </a>
-        </div>
+      <div class="menu-item">
+        <a href="widgets.html" class="menu-link">
+          <span class="menu-icon"><i class="fa fa-gem"></i></span>
+          <span class="menu-text">Earning</span>
+        </a>
+      </div>
 
 
 
