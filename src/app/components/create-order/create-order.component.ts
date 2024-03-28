@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart.service';
 import { environment } from 'src/environments/environment';
 interface Item {
@@ -21,6 +22,12 @@ interface StoreProductsResponse {
   products: Product[];
   // ... other properties of response
 }
+
+interface CartItem extends Item {
+  quantity: number;
+  customItem: string;
+  customValue: number;
+}
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
@@ -31,12 +38,16 @@ export class CreateOrderComponent implements OnInit {
   responseData: any;
   itemlist : any
   products: Item[] = [];
+  cartItems: Item[] = [];
+
   selectedItem: Item | undefined; // This will hold the item that was clicked
   cartCount = 0;
   isModalVisible: boolean = false;
   quantity: number = 1;
   totalPrice!: number;
-  constructor(private http: HttpClient, private router: Router,private cartService: CartService) {
+  customItem: string = '';
+  customValue: number = 0;
+  constructor(private http: HttpClient, private router: Router,private cartService: CartService,private toastr: ToastrService) {
 
 
   }
@@ -44,8 +55,8 @@ export class CreateOrderComponent implements OnInit {
   ngOnInit(): void {
     this.get_store_product_item_list();
     //this.products = this.responseData.products[0].items.filter((item: { is_visible_in_store: any; }) => item.is_visible_in_store);
-    console.log(this.products)
-    this.updateCartCount();
+    this.loadCartItems(); // Load cart items on initialization
+
     if (this.selectedItem && this.selectedItem.price) {
       this.updateTotalPrice();
     }
@@ -86,8 +97,41 @@ export class CreateOrderComponent implements OnInit {
   updateCartCount() {
     this.cartCount = this.cartService.getCartCount();
   }
-  saveCart() {
-    this.cartService.saveCart(this.selectedItem);
+  // saveCart() {
+  //   this.cartService.saveCart(this.selectedItem);
+  // }
+
+  saveCart(): void {
+    // Load existing cart items
+    this.loadCartItems();
+
+    if (!this.selectedItem) {
+      this.toastr.error('No item selected to add to cart.', 'Error');
+      return;
+    }
+
+    // Create a new cart item from the selected item
+    const newCartItem: CartItem = {
+      ...this.selectedItem,
+      quantity: this.quantity,
+      customItem: this.customItem,
+      customValue: this.customValue,
+    };
+
+    // Add the new cart item to the array
+   // this.cartItems.push(newCartItem);
+
+    // Save the updated array to local storage
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+
+    // Show the success message
+    this.toastr.success('Item added to cart!', 'Success');
+
+    // Update the cart count
+    this.cartCount = this.cartItems.length;
+
+    // Close the modal here using the appropriate method for your UI framework
+    // ...
   }
 
   increaseQuantity() {
@@ -106,5 +150,16 @@ export class CreateOrderComponent implements OnInit {
       this.totalPrice = this.quantity * this.selectedItem.price;
 
     }
+  }
+  loadCartItems(): void {
+    const cartContent = localStorage.getItem('cart');
+    this.cartItems = cartContent ? JSON.parse(cartContent) : [];
+    this.cartCount = this.cartItems.length; // Update cart count
+    console.log(this.cartCount);
+  }
+  showCartItems(): void {
+    // Logic to open the modal and show cartItems
+    // This will be specific to how you are handling modals
+    // It could be as simple as setting a boolean to show/hide the modal
   }
 }

@@ -7,35 +7,29 @@
         <div class="pos-content" style="padding-top: 50px;">
             <div class="d-lg-flex align-items-end mb-4">
                 <h3 class="page-header mb-lg-0">
-                  <!-- {{itemlist.name}} -->
-                  <small class="d-block fs-12px mt-1"
-                    >Monitor key performance metrics for online store</small
-                  >
+                    <!-- {{itemlist.name}} -->
+                    <small class="d-block fs-12px mt-1">Monitor key performance metrics for online store</small>
                 </h3>
                 <div class="ms-auto">
-                  <a
-                    href="#"
-                    class="btn fw-semibold fs-13px btn-secondary me-2"
-                    id="daterange-filter"
-                    ><i class="fa fa-calendar fa-fw me-md-1 opacity-5"></i>
-                    <span>27 Jan 2024 - 02 Feb 2024</span> <b class="caret ms-3"></b
-                  ></a>
-                  <a href="#" class="btn fw-semibold fs-13px btn-theme"
-                    ><i class="fa fa-upload fa-fw me-md-1 opacity-5"></i>
-                    <span class="d-none d-sm-inline">Export report</span></a
-                  >
-                  <!-- cart-icon.component.html -->
-                    <div class="cart-icon">
-                        <button (click)="toggleCartModal()">Cart {{ cartCount }}</button>
-                    </div>
-
+                    <a href="#" class="btn fw-semibold fs-13px btn-secondary me-2" id="daterange-filter"><i
+                            class="fa fa-calendar fa-fw me-md-1 opacity-5"></i>
+                        <span>27 Jan 2024 - 02 Feb 2024</span> <b class="caret ms-3"></b></a>
+                    <a href="#" class="btn fw-semibold fs-13px btn-theme"><i
+                            class="fa fa-upload fa-fw me-md-1 opacity-5"></i>
+                        <span class="d-none d-sm-inline">Export report</span></a>
+                    <!-- cart-icon.component.html -->
+                    <button class="btn btn-primary" (click)="showCartItems()">
+                        Cart <span class="badge bg-secondary">{{ cartCount }}</span>
+                      </button>
+                      
                 </div>
-              </div>
+            </div>
             <div class="pos-content-container h-100">
                 <div class="row gx-10">
-                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 pb-4" *ngFor="let item of itemlist" data-type="meat">
-                        <a href="#" class="pos-product" data-bs-toggle="modal"
-                            data-bs-target="#modalPosItem" (click)="onSelectItem(item)">
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 pb-4" *ngFor="let item of itemlist"
+                        data-type="meat">
+                        <a href="#" class="pos-product" data-bs-toggle="modal" data-bs-target="#modalPosItem"
+                            (click)="onSelectItem(item)">
                             <div class="img" style="background-image: url(assets/img/pos/product-1.jpg)">
                             </div>
                             <div class="info">
@@ -57,68 +51,63 @@
 </div>
 <div class="modal modal-pos fade" id="modalPosItem">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content border-0">
-        <a
-          href="#"
-          data-bs-dismiss="modal"
-          class="btn-close position-absolute top-0 end-0 m-4"
-        ></a>
-        <div class="modal-pos-product"  *ngIf="selectedItem">
-          <div class="modal-pos-product-img">
-            <div
-              class="img"
-              style="background-image: url(assets/img/pos/product-1.jpg)"
-            ></div>
-          </div>
-          <div class="modal-pos-product-info">
-            <div class="fs-4 fw-semibold">{{ selectedItem.name }}</div>
-            <div class="text-body text-opacity-50 mb-2">
-                {{ selectedItem.details }}
+        <div class="modal-content border-0">
+            <a href="#" data-bs-dismiss="modal" class="btn-close position-absolute top-0 end-0 m-4"></a>
+            <div class="modal-pos-product" *ngIf="selectedItem">
+                <div class="modal-pos-product-img">
+                    <div class="img" style="background-image: url(assets/img/pos/product-1.jpg)"></div>
+                </div>
+                <div class="modal-pos-product-info">
+                    <div class="fs-4 fw-semibold">{{ selectedItem.name }}</div>
+                    <div class="text-body text-opacity-50 mb-2">
+                        {{ selectedItem.details }}
+                    </div>
+                    <div class="fs-3 fw-bold mb-3">{{ totalPrice | currency:'ETB':'symbol-narrow':'1.0-0' }}</div>
+                    <div class="d-flex mb-3">
+                        <a href="#" class="btn btn-secondary" (click)="decreaseQuantity()"><i
+                                class="fa fa-minus"></i></a>
+                        <input type="text" class="form-control w-50px fw-bold mx-2 text-center" [(ngModel)]="quantity"
+                            name="qty" />
+                        <a href="#" class="btn btn-secondary" (click)="increaseQuantity()"><i
+                                class="fa fa-plus"></i></a>
+                    </div>
+                    <hr class="opacity-1" />
+                    <div class="typeahead__container mb-1">
+                        <label class="form-label">Custom Item </label>
+                        <div class="typeahead__field">
+                            <div class="typeahead__query input-group">
+                                <input class="form-control" [(ngModel)]="customItem" name="country_v1[query]" id="typeahead" placeholder="Type Reason" autocomplete="off">
+                            </div>
+                            <hr class="opacity-1" />
+
+                            <div class="typeahead__query input-group">
+                                <input class="form-control" type="number" [(ngModel)]="customValue" value="0" name="country_v1[query]" id="typeahead" placeholder="Type Value" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- size and addon goes here  -->
+                    <hr class="opacity-1" />
+                    <div class="row">
+                        <div class="col-4">
+                            <a href="#" class="btn btn-default fw-semibold mb-0 d-block py-3"
+                                data-bs-dismiss="modal">Cancel</a>
+                        </div>
+                        <div class="col-8">
+                            <a (click)="saveCart()"
+                                class="btn btn-theme fw-semibold d-flex justify-content-center align-items-center py-3 m-0">Add
+                                to cart <i class="fa fa-plus ms-2 my-n3"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="fs-3 fw-bold mb-3">{{ totalPrice  | currency:'ETB':'symbol-narrow':'1.0-0' }}</div>
-            <div class="d-flex mb-3">
-              <a href="#" class="btn btn-secondary" (click)="decreaseQuantity()"
-                ><i class="fa fa-minus"></i
-              ></a>
-              <input
-                type="text"
-                class="form-control w-50px fw-bold mx-2 text-center"
-                [(ngModel)]="quantity" name="qty"
-              />
-              <a href="#" class="btn btn-secondary" (click)="increaseQuantity()"
-                ><i class="fa fa-plus"></i
-              ></a>
-            </div>
-            <hr class="opacity-1" />
-            <!-- size and addon goes here  -->
-            <hr class="opacity-1" />
-            <div class="row">
-              <div class="col-4">
-                <a
-                  href="#"
-                  class="btn btn-default fw-semibold mb-0 d-block py-3"
-                  data-bs-dismiss="modal"
-                  >Cancel</a
-                >
-              </div>
-              <div class="col-8">
-                <a
-                (click)="saveCart()"
-                  class="btn btn-theme fw-semibold d-flex justify-content-center align-items-center py-3 m-0"
-                  >Add to cart <i class="fa fa-plus ms-2 my-n3"></i
-                ></a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="cart-modal" *ngIf="isModalVisible">
+</div>
+<div class="cart-modal" *ngIf="isModalVisible">
     <!-- <div *ngFor="let item of cartItems">
       <h5>{{ item.name }}</h5>
       <p>{{ item.details }}</p> -->
-      <!-- Add controls to update quantity or remove item -->
+    <!-- Add controls to update quantity or remove item -->
     <!-- </div> -->
-    <button >Checkout</button>
-  </div>
+    <button>Checkout</button>
+</div>
