@@ -34,6 +34,9 @@ export class CartService {
       this.cart = JSON.parse(cartData);
     }
   }
-
+  removeFromCart(index: number) {
+    this.cart.splice(index, 1);
+    //this.saveCart();
+  }
   // Methods for updating and removing items will go here
 }

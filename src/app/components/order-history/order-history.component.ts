@@ -55,6 +55,7 @@ export class OrderHistoryComponent implements OnInit {
 
   }
 
+
   getHistory() {
     // const storeId1 = localStorage.getItem('store_id');
     // const storeId = storeId1 ? JSON.parse(storeId1) : null;
@@ -82,7 +83,7 @@ export class OrderHistoryComponent implements OnInit {
       this.selectFirstRow();
       const storeInfoString = localStorage.getItem('store_info');
       this.currency_sign = this.responseData.currency_sign;
-      
+
       //this.currency_sign = this.responseData.currency_sign
       //this.responseData = Object.values(this.responseData)
       console.log(this.responseData);
@@ -125,5 +126,8 @@ export class OrderHistoryComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  
+
 
 }

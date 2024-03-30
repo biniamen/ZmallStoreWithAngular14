@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 declare let $: any; // This line declares jQuery so TypeScript understands the $ symbol
 
@@ -14,8 +16,12 @@ declare let $: any; // This line declares jQuery so TypeScript understands the $
 })
 export class AppComponent {
   LoggedIn$: Observable<boolean>;
+  adminUrl = environment.adminUrl;
+  newIncommingOrder: any = []
+  private intervalId: any;
 
-  constructor(private authService: AuthService) {
+
+  constructor(private authService: AuthService, private http: HttpClient) {
     this.LoggedIn$ = this.authService.isLoggedIn();
   }
 
@@ -29,6 +35,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+
     // if (typeof $ !== 'undefined') {
     //   // If jQuery is loaded, alert that jQuery is installed and show its version.
     //   alert(`jQuery is installed! Version: ${$.fn.jquery}`);
@@ -37,5 +44,8 @@ export class AppComponent {
     //   alert('jQuery is not installed!');
     // }
   }
+
+
   title = 'zmallstore';
+ 
 }

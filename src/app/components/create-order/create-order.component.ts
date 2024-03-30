@@ -12,6 +12,8 @@ interface Item {
   image_url: string[];
   is_available: boolean;
   is_visible_in_store: boolean;
+  quantity: number; // This line is important. Add it if it's missing.
+
   // ... other properties as needed
 }
 interface Product {
@@ -24,9 +26,11 @@ interface StoreProductsResponse {
 }
 
 interface CartItem extends Item {
+  product_name: string;
   quantity: number;
   customItem: string;
   customValue: number;
+  totalPrice?: number;
 }
 @Component({
   selector: 'app-create-order',
@@ -39,7 +43,7 @@ export class CreateOrderComponent implements OnInit {
   itemlist : any
   products: Item[] = [];
   cartItems: Item[] = [];
-
+  newIncommingOrder: any = []
   selectedItem: Item | undefined; // This will hold the item that was clicked
   cartCount = 0;
   isModalVisible: boolean = false;
@@ -47,6 +51,8 @@ export class CreateOrderComponent implements OnInit {
   totalPrice!: number;
   customItem: string = '';
   customValue: number = 0;
+  isSidebarVisible = false;  // This controls the visibility of the sidebar
+
   constructor(private http: HttpClient, private router: Router,private cartService: CartService,private toastr: ToastrService) {
 
 
@@ -68,6 +74,7 @@ export class CreateOrderComponent implements OnInit {
     // As soon as an item is selected, set the quantity to 1 and calculate the total price
     this.quantity = 1;
     this.totalPrice = this.selectedItem.price;
+    console.log()
   }
 
   get_store_product_item_list() {
@@ -91,9 +98,7 @@ export class CreateOrderComponent implements OnInit {
       });
   }
 
-  toggleCartModal() {
-    // Logic to display cart details modal
-  }
+
   updateCartCount() {
     this.cartCount = this.cartService.getCartCount();
   }
@@ -101,6 +106,15 @@ export class CreateOrderComponent implements OnInit {
   //   this.cartService.saveCart(this.selectedItem);
   // }
 
+  showCartItems(): void {
+    if (this.cartCount > 0) {
+      this.isSidebarVisible = !this.isSidebarVisible; // Toggle visibility
+    }
+  }
+
+  hideCartItems(): void {
+    this.isSidebarVisible = false;
+  }
   saveCart(): void {
     // Load existing cart items
     this.loadCartItems();
@@ -109,17 +123,27 @@ export class CreateOrderComponent implements OnInit {
       this.toastr.error('No item selected to add to cart.', 'Error');
       return;
     }
-
+    // const newCartItem: CartItem = {
+    //   ...this.selectedItem,
+    //   quantity: this.quantity,
+    //   customItem: this.customItem,
+    //   customValue: this.customValue,
+    // };
     // Create a new cart item from the selected item
     const newCartItem: CartItem = {
       ...this.selectedItem,
+      product_name :this.selectedItem.name,
       quantity: this.quantity,
       customItem: this.customItem,
       customValue: this.customValue,
     };
 
+    // Calculate total price for the new cart item
+    const totalPrice = this.selectedItem.price * this.quantity;
+    newCartItem['totalPrice'] = totalPrice; // Add total price to the cart item
+
     // Add the new cart item to the array
-   // this.cartItems.push(newCartItem);
+    this.cartItems.push(newCartItem);
 
     // Save the updated array to local storage
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
@@ -129,9 +153,9 @@ export class CreateOrderComponent implements OnInit {
 
     // Update the cart count
     this.cartCount = this.cartItems.length;
+    console.log(this.cartCount)
 
-    // Close the modal here using the appropriate method for your UI framework
-    // ...
+    // Optionally: Update UI to display new cart count and items
   }
 
   increaseQuantity() {
@@ -151,15 +175,41 @@ export class CreateOrderComponent implements OnInit {
 
     }
   }
+  // getting cart from localStorage
   loadCartItems(): void {
     const cartContent = localStorage.getItem('cart');
+    // Make sure that we have an array from the parsed JSON, or else initialize it as an empty array
     this.cartItems = cartContent ? JSON.parse(cartContent) : [];
+    if (!Array.isArray(this.cartItems)) { // Check if the parsed content is an array
+      this.cartItems = []; // Reset to an empty array if it's not
+    }
     this.cartCount = this.cartItems.length; // Update cart count
-    console.log(this.cartCount);
   }
-  showCartItems(): void {
-    // Logic to open the modal and show cartItems
-    // This will be specific to how you are handling modals
-    // It could be as simple as setting a boolean to show/hide the modal
+
+  // calculateTotalPrice(): void {
+  //   this.totalPrice = this.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  // }
+
+  onSelectProduct(product: any): void {
+    this.cartService.addToCart({ ...product, quantity: 1 });
+    this.loadCartItems();
+  }
+  removeFromCart(index: number): void {
+    this.cartService.removeFromCart(index);
+    this.loadCartItems();
+  }
+
+  // Token Checking and new order is comming
+  store_notify_new_order() {
+    const storeId = localStorage.getItem('store_id');
+    const serverToken = localStorage.getItem('server_token');
+    const payload = {
+      store_id: storeId,
+      server_token: serverToken,
+    };
+   this.http.post(this.adminUrl + 'store/store_notify_new_order', payload).subscribe(response => {
+      this.newIncommingOrder = response;
+      console.log(this.newIncommingOrder);
+    });
   }
 }
