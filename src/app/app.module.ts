@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
 import { CartService } from './services/cart.service';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CartService } from './services/cart.service';
     StoreloginComponent,
     HeadersidebarComponent,
     OrderHistoryComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

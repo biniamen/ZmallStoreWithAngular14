@@ -1,0 +1,170 @@
+<div class="d-flex align-items-center mb-md-3 mb-2" style="padding-top: 50px;">
+    <div class="flex-fill">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item active">Scrum Board</li>
+        </ul>
+        <h1 class="page-header mb-0">
+            Scrum Board
+        </h1>
+    </div>
+    <div class="ms-auto">
+        <a href="#modalAddTask" data-bs-toggle="modal" class="btn btn-theme pe-3 fw-semibold fs-13px"><i
+                class="fa fa-plus me-1"></i> Add Task</a>
+    </div>
+</div>
+<div class="mb-md-3 mb-2 d-sm-flex flex-wrap">
+    <div class="dropdown-toggle me-4 mb-md-0 mb-2 d-inline-flex align-items-center">
+        <a href="#" data-bs-toggle="dropdown" class="text-body text-decoration-none d-inline-flex align-items-center"><i
+                class="bi bi-folder2 text-theme fs-5 me-2 my-n2"></i> project/droplet</a>
+        <div class="dropdown-menu">
+            <a href="#" class="dropdown-item d-flex align-items-center pe-4"><i
+                    class="bi bi-folder2 fs-5 me-2 my-n2"></i> project/mobile-app-dev</a>
+            <a href="#" class="dropdown-item d-flex align-items-center pe-4"><i
+                    class="bi bi-folder2 fs-5 me-2 my-n2"></i> project/bootstrap-5</a>
+            <a href="#" class="dropdown-item d-flex align-items-center pe-4"><i
+                    class="bi bi-folder2 fs-5 me-2 my-n2"></i> project/mvc-version</a>
+            <a href="#" class="dropdown-item d-flex align-items-center pe-4"><i
+                    class="bi bi-folder2 fs-5 me-2 my-n2"></i> project/ruby-version</a>
+        </div>
+    </div>
+    <div class="me-4 mb-md-0 mb-2 d-inline-flex align-items-center"><i
+            class="bi bi-database-down fs-5 me-2 my-n2 text-body text-opacity-50"></i> 1,392 pull request
+    </div>
+    <div class="me-4 mb-md-0 mb-2 d-inline-flex align-items-center"><i
+            class="bi bi-people fs-5 me-2 my-n2 text-body text-opacity-50"></i> 52 participant</div>
+    <div class="mb-md-0 mb-2 d-inline-flex align-items-center"><i
+            class="bi bi-clock-history fs-5 me-2 my-n2 text-body text-opacity-50"></i> 14 day(s)</div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-3 col-lg-6">
+        <div class="card mb-3" >
+
+            <div class="card-header d-flex align-items-center bg-none">
+                <span class="flex-grow-1 fw-bold">New Order</span>
+                <!-- <a href="#" class="text-body text-opacity-50 text-decoration-none me-3"><i
+                        class="fa fa-fw fa-redo"></i></a> -->
+                <div class="mb-1">
+                    <span class="badge bg-dark">Detail</span>&nbsp;
+                    <span class="badge bg-danger">Cancel</span>
+                </div>
+                <!-- <a href="#" class="text-body text-opacity-50 text-decoration-none"><i class="fa fa-fw fa-trash"></i></a> -->
+            </div>
+
+
+            <div class="list-group list-group-flush scrollable-content"  >
+
+                <div class="list-group-item d-flex px-3" *ngFor="let order of responseData.orders" >
+                    <div class="me-3 pt-1">
+                        <i class="far fa-user text-body text-opacity-50 fa-fw fa-lg"></i>
+                    </div>
+                    <div class="flex-fill">
+                        <div class="fw-semibold">{{ order.user_detail.first_name }} {{ order.user_detail.last_name }}</div>
+                        <div class="small text-body text-opacity-50 mb-2">#29949 opened yesterday by Terry</div>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="fw-semibold me-2">
+                                {{order.unique_id}}
+                            </div>
+                            <div>
+                                <a href="#" class="text-body text-opacity-50" data-bs-toggle="collapse"
+                                    data-bs-target="#todoBoard" aria-expanded="true">
+                                    <i class="fa fa-plus-circle"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!-- the hide section -->
+                        <div class="form-group mb-0 small ">
+                            <div class="collapse show" id="todoBoard" style="">
+                                <div class="form-check d-flex align-items-center ">
+                                    <i class="fas fa-lg fa-fw me-2 fa-map-marker-alt"></i>
+                                    <label class="form-check-label" for="customCheck1">create ui for
+                                        autocomplete</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="fas fa-lg fa-fw me-2 fa-shopping-cart"></i>
+                                    <label class="form-check-label" for="customCheck1">create ui for
+                                        autocomplete</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-clock"></i>
+                                    <label class="form-check-label" for="customCheck1">create ui for
+                                        autocomplete</label>
+                                </div>
+
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-dollar-sign"></i>
+                                    <label class="form-check-label" for="customCheck1">create ui for
+                                        autocomplete</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-comment"></i>
+                                    <label class="form-check-label" for="customCheck1">create ui for
+                                        autocomplete</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="fas fa-lg fa-fw me-2 fa-info-circle"></i>
+                                    <label class="form-check-label" for="customCheck1">create ui for
+                                        autocomplete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+<div class="modal fade" id="modalAddTask">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" placeholder="e.g Feature enhancement">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select class="form-select">
+                        <option value>To Do</option>
+                        <option value>In Progress</option>
+                        <option value>Done</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tags</label>
+                    <ul id="jquery-tagit" class="tagit form-control">
+                        <li>enhancement</li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default fs-13px fw-semibold" data-bs-dismiss="modal">Cancel</a>
+                <button type="button" class="btn btn-theme fs-13px fw-semibold">Create</button>
+            </div>
+        </div>
+    </div>
+</div>

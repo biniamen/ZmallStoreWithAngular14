@@ -1,0 +1,20 @@
+.list-group-flush {
+    overflow-y: auto; /* Enables scrolling if content overflows */
+    max-height: 400px; /* Adjust the height as needed */
+
+    /* Styles for the scrollbar track */
+    &::-webkit-scrollbar {
+      width: 5px; /* Width of the scrollbar */
+    }
+
+    /* Styles for the scrollbar handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888; /* Handle color */
+      border-radius: 10px;
+    }
+
+    /* Handle hover styles */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Handle color on hover */
+    }
+  }
