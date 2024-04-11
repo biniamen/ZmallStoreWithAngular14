@@ -12,11 +12,7 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  // Add more elements...
-];
+
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
@@ -127,7 +123,7 @@ export class OrderHistoryComponent implements OnInit {
     }
   }
 
-  
+
 
 
 }

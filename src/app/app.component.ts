@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 declare let $: any; // This line declares jQuery so TypeScript understands the $ symbol
 
@@ -19,9 +20,9 @@ export class AppComponent {
   adminUrl = environment.adminUrl;
   newIncommingOrder: any = []
   private intervalId: any;
+  showSidebar: boolean = true;
 
-
-  constructor(private authService: AuthService, private http: HttpClient) {
+  constructor(private authService: AuthService, private http: HttpClient,private router: Router) {
     this.LoggedIn$ = this.authService.isLoggedIn();
   }
 
@@ -35,7 +36,11 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-
+    if (this.router.url === '/login') {
+      this.showSidebar = false;
+    } else {
+      this.showSidebar = true;
+    }
     // if (typeof $ !== 'undefined') {
     //   // If jQuery is loaded, alert that jQuery is installed and show its version.
     //   alert(`jQuery is installed! Version: ${$.fn.jquery}`);
@@ -47,5 +52,5 @@ export class AppComponent {
 
 
   title = 'zmallstore';
- 
+
 }

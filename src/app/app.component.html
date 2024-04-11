@@ -2,8 +2,8 @@
 
 <!-- Toolbar -->
 <!-- Main App Container -->
-<div *ngIf="LoggedIn$ | async; else StoreLogin" class="app-container-with-sidebar">
-  <app-headersidebar></app-headersidebar>
+<div *ngIf="LoggedIn$ | async; else StoreLogin"  class="app-container-with-sidebar">
+  <app-headersidebar *ngIf="showSidebar"></app-headersidebar>
   <button class="app-sidebar-mobile-backdrop" data-toggle-target=".app" data-toggle-class="app-sidebar-mobile-toggled"></button>
   <div id="content" class="app-content">
     <router-outlet></router-outlet>
