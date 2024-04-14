@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
 import { CartService } from './services/cart.service';
 import { OrderComponent } from './components/order/order.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OrderComponent } from './components/order/order.component';
     HeadersidebarComponent,
     OrderHistoryComponent,
     CreateOrderComponent,
-    OrderComponent
+    OrderComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+<!-- checkout.component.html -->
+
+<div class="checkout-page" style="padding-top: 100px;">
+    <div class="user-information">
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <input type="text" formControlName="firstName" placeholder="Enter First Name" />
+                <input type="text" formControlName="lastName" placeholder="Enter Last Name" />
+            </div>
+            <div class="form-row">
+                <input type="email" formControlName="email" placeholder="Enter Email" />
+                <input type="text" formControlName="mobileNumber" placeholder="Enter Mobile No." />
+            </div>
+            <input type="text" placeholder="Search for location" autocapitalize="off" autocorrect="off" spellcheck="off"
+                #search [formControl]="locationControl" />
+            <!-- Additional input fields -->
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+    <div class="map-container">
+        <google-map [center]="center" [zoom]="zoom" (mapClick)="mapClicked($event)">
+            <map-marker [position]="center"></map-marker>
+          </google-map>
+    </div>
+
+</div>

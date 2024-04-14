@@ -259,4 +259,7 @@ export class CreateOrderComponent implements OnInit {
     this.calculateTotalCartPrice();
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
+  checkout() {
+    this.router.navigate(['/checkout']);
+  }
 }
