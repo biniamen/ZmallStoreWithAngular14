@@ -38,6 +38,7 @@ export class AuthService {
     localStorage.removeItem('server_token');
     localStorage.removeItem('store_id');
     localStorage.removeItem('store_info');
+    localStorage.removeItem('cart');
     this.loggedIn.next(false);
     this.router.navigate(['/login']); // Assuming '/login' is your login route
   }

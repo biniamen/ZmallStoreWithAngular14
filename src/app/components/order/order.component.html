@@ -122,6 +122,7 @@
 
     </div>
 
+    <!-- Accepted -->
     <div class="col-xl-3 col-lg-6">
         <div class="card mb-3" >
 
@@ -204,6 +205,172 @@
 
     </div>
 
+    <!-- In-Progress -->
+    <div class="col-xl-3 col-lg-6">
+        <div class="card mb-3" >
+
+            <div class="card-header d-flex align-items-center bg-none">
+                <span class="flex-grow-1 d-flex fw-bold">In-Progress</span>
+
+            </div>
+
+
+            <div class="list-group list-group-flush scrollable-content"  >
+
+                <div class="list-group-item d-flex px-3" *ngFor="let order of AcceptedOrder" >
+                    <div class="me-3 pt-1">
+                        <i class="far fa-user text-body text-opacity-50 fa-fw fa-lg"></i>
+                    </div>
+                    <div class="flex-fill">
+                        <div class="card-header d-flex align-items-center bg-none">
+                            <div class="mb-1 d-flex">
+                            <span class="badge bg-dark">Detail</span>
+                            <span class="badge bg-success"  (click)="readyOrder(order._id)">Ready</span>
+                            <span class="badge bg-primary">Comment</span>
+                            <span class="badge bg-danger">Reject</span>
+
+                        </div>
+                        </div>
+                        <div class="fw-semibold">{{ order.user_detail.first_name }} {{ order.user_detail.last_name }}</div>
+                        <!-- <div class="small text-body text-opacity-50 mb-2">#29949 opened yesterday by Terry</div> -->
+
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="fw-semibold me-2">
+
+                            </div>
+                            <div>
+                                <a href="#" class="text-body text-opacity-50" data-bs-toggle="collapse"
+                                    data-bs-target="#todoBoard" aria-expanded="true">
+                                    <i class="fa fa-plus-circle">{{order.unique_id}}</i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!-- the hide section -->
+                        <div class="form-group mb-0 small ">
+                            <div class="collapse show" id="todoBoard" style="">
+                                <div class="form-check d-flex align-items-center ">
+                                    <i class="fas fa-lg fa-fw me-2 fa-map-marker-alt"></i>
+                                    <label class="form-check-label" for="customCheck1">Current location({{ order.order_payment_detail.total_distance.toFixed(2) }}Km)</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="fas fa-lg fa-fw me-2 fa-shopping-cart"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.cart_detail.order_details[0].product_name }}</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-clock"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.estimated_time_for_ready_order | date:'medium' }}</label>
+                                </div>
+
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-dollar-sign"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.currency_sign }}{{ order.order_payment_detail.total }} ({{ order.order_payment_detail.is_payment_mode_cash ? 'Cash' : 'Card' }})
+                                        </label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-comment"></i>
+                                    <label class="form-check-label" for="customCheck1">Comment {{ order.comment ? 'Waiting' : 'None' }}</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="fas fa-lg fa-fw me-2 fa-info-circle"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.express_option }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- Ready to Delivery -->
+    <div class="col-xl-3 col-lg-6">
+        <div class="card mb-3" >
+
+            <div class="card-header d-flex align-items-center bg-none">
+                <span class="flex-grow-1 d-flex fw-bold">Ready to Delivery</span>
+
+            </div>
+
+
+            <div class="list-group list-group-flush scrollable-content"  >
+
+                <div class="list-group-item d-flex px-3" *ngFor="let order of ReadyOrder" >
+                    <div class="me-3 pt-1">
+                        <i class="far fa-user text-body text-opacity-50 fa-fw fa-lg"></i>
+                    </div>
+                    <div class="flex-fill">
+                        <div class="card-header d-flex align-items-center bg-none">
+                            <div class="mb-1 d-flex">
+                            <span class="badge bg-dark">Detail</span>
+                            <span class="badge bg-danger">Cancel</span>
+                        </div>
+                        </div>
+                        <div class="fw-semibold">{{ order.user_detail.first_name }} {{ order.user_detail.last_name }}</div>
+                        <!-- <div class="small text-body text-opacity-50 mb-2">#29949 opened yesterday by Terry</div> -->
+
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="fw-semibold me-2">
+
+                            </div>
+                            <div>
+                                <a href="#" class="text-body text-opacity-50" data-bs-toggle="collapse"
+                                    data-bs-target="#todoBoard" aria-expanded="true">
+                                    <i class="fa fa-plus-circle">{{order.unique_id}}</i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!-- the hide section -->
+                        <div class="form-group mb-0 small ">
+                            <div class="collapse show" id="todoBoard" style="">
+                                <div class="form-check d-flex align-items-center ">
+                                    <i class="fas fa-lg fa-fw me-2 fa-map-marker-alt"></i>
+                                    <label class="form-check-label" for="customCheck1">Current location({{ order.order_payment_detail.total_distance.toFixed(2) }}Km)</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="fas fa-lg fa-fw me-2 fa-shopping-cart"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.cart_detail.order_details[0].product_name }}</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-clock"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.estimated_time_for_ready_order | date:'medium' }}</label>
+                                </div>
+
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-dollar-sign"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.currency_sign }}{{ order.order_payment_detail.total }} ({{ order.order_payment_detail.is_payment_mode_cash ? 'Cash' : 'Card' }})
+                                        </label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="far fa-lg fa-fw me-2 fa-comment"></i>
+                                    <label class="form-check-label" for="customCheck1">Comment {{ order.comment ? 'Waiting' : 'None' }}</label>
+                                </div>
+                                <div class="form-check d-flex align-items-center">
+                                    <i class="fas fa-lg fa-fw me-2 fa-info-circle"></i>
+                                    <label class="form-check-label" for="customCheck1">{{ order.express_option }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
 
 </div>
 

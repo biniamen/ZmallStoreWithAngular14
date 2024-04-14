@@ -17,6 +17,9 @@ export class OrderComponent implements OnInit {
   newOrder: any[] = [];  // Holds orders of type 1
   AcceptedOrder: any[] = [];  // Holds orders of type 3
   OrderPreparing: any[] = []
+  InProgress: any[] = []
+  ReadyOrder: any[] = []
+
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}
 
@@ -46,6 +49,8 @@ export class OrderComponent implements OnInit {
         this.newOrder = this.responseData.orders.filter((order: { order_status: number; }) => order.order_status === 1);
         this.AcceptedOrder = this.responseData.orders.filter((order: { order_status: number; }) => order.order_status === 3);
         this.OrderPreparing = this.responseData.orders.filter((order: { order_status: number; }) => order.order_status === 5);
+        this.InProgress = this.responseData.orders.filter((order: { order_status: number; }) => order.order_status === 5);
+        this.ReadyOrder = this.responseData.orders.filter((order: { order_status: number; }) => order.order_status === 7);
 
       }
       console.log(this.responseData);
@@ -72,4 +77,47 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  // ready order
+  readyOrder(order: any) {
+    const storeId = localStorage.getItem('store_id');
+    const serverToken = localStorage.getItem('server_token');
+
+    const payload = {
+      store_id: storeId,
+      server_token: serverToken,
+      order_id: order._id,
+      order_status: 7 // Assuming '3' is the status code for 'accepted'
+    };
+
+    this.http.post(this.adminUrl + '/store/set_order_status', payload).subscribe((response) => {
+      console.log('Order approved', response);
+      if (response) {
+        this.toastr.success('Order Ready');
+        // Optionally update the order list or UI here
+        this.getOrder(); // Implement this method to refresh the order list or update UI
+      }
+    });
+  }
+  // store cancel order
+  cancelOrder(order: any, reason?: string) {
+    const storeId = localStorage.getItem('store_id');
+    const serverToken = localStorage.getItem('server_token');
+
+    const payload = {
+      store_id: storeId,
+      cancel_reason: reason,
+      server_token: serverToken,
+      order_id: order._id,
+      order_status: 104 // Assuming '3' is the status code for 'accepted'
+    };
+
+    this.http.post(this.adminUrl + '/store/store_cancel_or_reject_order', payload).subscribe((response) => {
+      console.log('Order Cancelled By Store', response);
+      if (response) {
+        this.toastr.success('Order Ready');
+        // Optionally update the order list or UI here
+        this.getOrder(); // Implement this method to refresh the order list or update UI
+      }
+    });
+  }
 }

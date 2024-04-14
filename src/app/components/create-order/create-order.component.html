@@ -6,17 +6,24 @@
 
         <div class="pos-content" style="padding-top: 50px;">
             <div class="d-lg-flex align-items-end mb-4">
-                <h3 class="page-header mb-lg-0">
-                    <!-- {{itemlist.name}} -->
-                    <small class="d-block fs-12px mt-1">Monitor key performance metrics for online store</small>
-                </h3>
+                <div class="form-group mb-3">
+                    <label class="form-label"
+                        for="exampleFormControlSelect1">Select dropdown</label>
+                    <select class="form-select" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
                 <div class="ms-auto">
                     <a href="#" class="btn fw-semibold fs-13px btn-secondary me-2" id="daterange-filter"><i
                             class="fa fa-calendar fa-fw me-md-1 opacity-5"></i>
                         <span>27 Jan 2024 - 02 Feb 2024</span> <b class="caret ms-3"></b></a>
-                    <a href="#" class="btn fw-semibold fs-13px btn-theme"><i
+                    <!-- <a href="#" class="btn fw-semibold fs-13px btn-theme"><i
                             class="fa fa-upload fa-fw me-md-1 opacity-5"></i>
-                        <span class="d-none d-sm-inline">Export report</span></a>
+                        <span class="d-none d-sm-inline">Export report</span></a> -->
                     <!-- cart-icon.component.html -->
                     <button class="btn btn-primary" (click)="showCartItems()">
                         Cart <span class="badge bg-secondary">{{ cartCount }}</span>
@@ -71,31 +78,35 @@
 
                         <div class="pos-order" *ngFor="let item of cartItems">
                             <div class="pos-order-product">
-                                <div class="img"
-                                    style="background-image: url(assets/img/pos/product-2.jpg)"></div>
-                                <div class="flex-1">
-                                    <div class="h6 mb-1">{{ item.name }}</div>
-                                    <div class="small">$12.99</div>
-                                    <div class="small mb-2">- size: large</div>
-                                    <div class="d-flex">
-                                        <a href="#" class="btn btn-secondary btn-sm"><i
-                                                class="fa fa-minus"></i></a>
-                                        <input type="text"
-                                            class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center"
-                                            value="01">
-                                        <a href="#" class="btn btn-secondary btn-sm"><i
-                                                class="fa fa-plus"></i></a>
-                                    </div>
+                                <div class="img" style="background-image: url(assets/img/pos/product-2.jpg)">
+                              <!-- <div class="img" [style.background-image]="'url(' + item.imageUrl + ')'"> -->
+                            </div>
+                              <div class="flex-1">
+                                <div class="h6 mb-1">{{ item.name }}</div>
+                                <div class="small">{{ item.price * item.quantity| currency:'ETB':'symbol-narrow':'1.0-0' }}</div>
+                                <!-- <div class="small mb-2">- size: large</div> -->
+                                <div class="d-flex">
+                                  <button (click)="decrementQuantity(item)" class="btn btn-secondary btn-sm">
+                                    <i class="fa fa-minus"></i>
+                                  </button>
+                                  <input type="text" [(ngModel)]="item.quantity"
+                                    class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center"
+                                    [value]="item.quantity">
+                                  <button (click)="incrementQuantity(item)" class="btn btn-secondary btn-sm">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
                                 </div>
+                              </div>
                             </div>
                             <div class="pos-order-price d-flex flex-column">
-                                <div class="flex-1">$12.99</div>
-                                <div class="text-end">
-                                    <a href="#" class="btn btn-default btn-sm"><i
-                                            class="fa fa-trash"></i></a>
-                                </div>
+                              <div class="flex-1">{{ item.price * item.quantity | currency:'ETB':'symbol-narrow':'1.0-0' }}</div>
+                              <div class="text-end">
+                                <button (click)="removeItem(item)" class="btn btn-default btn-sm">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                              </div>
                             </div>
-                        </div>
+                          </div>
 
 
 
@@ -109,22 +120,22 @@
 
 
                 <div class="pos-sidebar-footer">
-                    <div class="d-flex align-items-center mb-2">
+                    <!-- <div class="d-flex align-items-center mb-2">
                         <div>Subtotal</div>
                         <div class="flex-1 text-end h6 mb-0">$30.98</div>
                     </div>
                     <div class="d-flex align-items-center">
                         <div>Taxes (6%)</div>
                         <div class="flex-1 text-end h6 mb-0">$2.12</div>
-                    </div>
+                    </div> -->
                     <hr class="opacity-1 my-10px">
                     <div class="d-flex align-items-center mb-2">
                         <div>Total</div>
-                        <div class="flex-1 text-end h4 mb-0">$33.10</div>
+                        <div class="flex-1 text-end h4 mb-0">{{ totalCartPrice | currency:'ETB':'symbol-narrow':'1.0-0' }}</div>
                     </div>
                     <div class="mt-3">
                         <div class="d-flex">
-                            <a href="#"
+                            <!-- <a href="#"
                                 class="btn btn-default w-70px me-10px d-flex align-items-center justify-content-center">
                                 <span>
                                     <i class="fa fa-bell fa-lg my-10px d-block"></i>
@@ -137,12 +148,12 @@
                                     <i class="fa fa-receipt fa-fw fa-lg my-10px d-block"></i>
                                     <span class="small fw-semibold">Bill</span>
                                 </span>
-                            </a>
+                            </a> -->
                             <a href="#"
                                 class="btn btn-theme flex-fill d-flex align-items-center justify-content-center">
                                 <span>
-                                    <i class="fa fa-cash-register fa-lg my-10px d-block"></i>
-                                    <span class="small fw-semibold">Submit Order</span>
+                                    <i class="fa fa-shopping-cart fa-lg my-10px d-block"></i>
+                                    <span class="small fw-semibold">Checkout</span>
                                 </span>
                             </a>
                         </div>

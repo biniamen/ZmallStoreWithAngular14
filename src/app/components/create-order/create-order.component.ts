@@ -52,6 +52,9 @@ export class CreateOrderComponent implements OnInit {
   customItem: string = '';
   customValue: number = 0;
   isSidebarVisible = false;  // This controls the visibility of the sidebar
+  totalCartPrice: number = 0;  // This will hold the total price of the cart
+
+
 
   constructor(private http: HttpClient, private router: Router,private cartService: CartService,private toastr: ToastrService) {
 
@@ -60,6 +63,7 @@ export class CreateOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.get_store_product_item_list();
+    this.calculateTotalCartPrice()
     //this.products = this.responseData.products[0].items.filter((item: { is_visible_in_store: any; }) => item.is_visible_in_store);
     this.loadCartItems(); // Load cart items on initialization
 
@@ -163,6 +167,10 @@ export class CreateOrderComponent implements OnInit {
     this.updateTotalPrice();
   }
 
+  increaseQuantityCart() {
+    this.quantity++;
+    this.updateTotalPrice();
+  }
   decreaseQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
@@ -182,8 +190,14 @@ export class CreateOrderComponent implements OnInit {
     this.cartItems = cartContent ? JSON.parse(cartContent) : [];
     if (!Array.isArray(this.cartItems)) { // Check if the parsed content is an array
       this.cartItems = []; // Reset to an empty array if it's not
+      this.calculateTotalCartPrice();
     }
     this.cartCount = this.cartItems.length; // Update cart count
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      this.cartItems = JSON.parse(storedCart);
+      this.calculateTotalCartPrice();
+    }
   }
 
   // calculateTotalPrice(): void {
@@ -211,5 +225,38 @@ export class CreateOrderComponent implements OnInit {
       this.newIncommingOrder = response;
       console.log(this.newIncommingOrder);
     });
+  }
+
+  /// cart item
+  incrementQuantity(item: any) {
+    item.quantity++;
+    this.calculateTotalCartPrice();
+    this.updateCartItem(item);
+  }
+
+  decrementQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.calculateTotalCartPrice();
+      this.updateCartItem(item);
+    }
+  }
+  updateCartItem(item: any) {
+    // Update the cart item in the array
+    // Calculate the total price for the individual item
+    //item.price = item.quantity * item.price;
+    // Update cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+  }
+  calculateTotalCartPrice() {
+    this.totalCartPrice = this.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  }
+
+
+
+  removeItem(itemToRemove: any) {
+    this.cartItems = this.cartItems.filter(item => item !== itemToRemove);
+    this.calculateTotalCartPrice();
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 }
