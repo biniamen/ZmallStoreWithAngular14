@@ -13,6 +13,9 @@
             </div>
             <input type="text" placeholder="Search for location" autocapitalize="off" autocorrect="off" spellcheck="off"
                 #search [formControl]="locationControl" />
+                <!-- Add formControlName if you are using reactive forms -->
+<input type="text" formControlName="location" placeholder="Search for location">
+
             <!-- Additional input fields -->
             <button type="submit">Place Order</button>
         </form>

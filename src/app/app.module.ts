@@ -20,6 +20,7 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
 import { CartService } from './services/cart.service';
 import { OrderComponent } from './components/order/order.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    GoogleMapsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right',
