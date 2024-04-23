@@ -1,60 +1,50 @@
 <div class="container" style="padding-top: 50px">
   <div class="row justify-content-center">
-    <div class="col-xl-10">
+    <div class="col-xl-12">
       <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-8">
             <div id="sizing" class="mb-5">
-                <h4>Sizing</h4>
-                <p>
+                <h4>Checkout Page</h4>
+                <!-- <p>
                   Set heights using classes like <code>.form-control-lg</code> and
                   <code>.form-control-sm</code>.
-                </p>
+                </p> -->
                 <div class="card">
                   <div class="card-body">
-                      <div class="mb-3">
-                          <label for="exampleInputUsername1" class="form-label">Address</label>
-                          <input type="text" [(ngModel)]="search" class="form-control" (input)="onInput()"
-                              placeholder="Enter location">
-                          <div *ngIf="suggestions.length">
-                              <ul>
-                                  <li class="dropdown-item" *ngFor="let suggestion of suggestions"
-                                      (click)="onSuggestionClick(suggestion)">
-                                      <i class="fa fa-map-marker" aria-hidden="true"></i> {{ suggestion.description
-                                      }}
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
+                      
                     <div class="row mb-n3">
                       <div class="col-xl-6">
-                        <input
-                          class="form-control form-control-lg mb-3"
-                          type="text"
-                          placeholder=".form-control-lg"
-                        />
-                        <input
-                          class="form-control mb-3"
-                          type="text"
-                          placeholder="Default input"
-                        />
-                        <input
-                          class="form-control form-control-sm mb-3"
-                          type="text"
-                          placeholder=".form-control-sm"
-                        />
+                        <input  class="form-control mb-3"  type="text"  placeholder="Enter First Name" />                   
                       </div>
                       <div class="col-xl-6">
-                        <select class="form-select form-select-lg mb-3">
-                          <option>Large select</option>
-                        </select>
-                        <select class="form-select mb-3">
-                          <option>Default select</option>
-                        </select>
-                        <select class="form-select form-select-sm mb-3">
-                          <option>Small select</option>
-                        </select>
+                        <input  class="form-control mb-3"  type="text"  placeholder="Enter Last Name" />                   
                       </div>
+                      <div class="col-xl-6">
+                        <input  class="form-control mb-3"  type="text"  placeholder="Enter Email" />                   
+                      </div>
+                      <div class="col-xl-6">
+                        <input  class="form-control mb-3"  type="text"  placeholder="Enter Phone #" />                   
+                      </div>
+                      <div class="mb-3">
+                        <div class="input-group">
+                          <input type="text" [(ngModel)]="search" class="form-control" (input)="onInput()" placeholder="Enter location" autocomplete="off">
+                          <button class="btn btn-outline-secondary" type="button" (click)="confirmAddress()">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </div>
+                        <div *ngIf="suggestions.length" class="autocomplete-dropdown-container">
+                          <ul class="suggestions-dropdown">
+                            <li *ngFor="let suggestion of suggestions" (click)="onSuggestionClick(suggestion)" class="suggestion-item">
+                              <i class="fas fa-lg fa-fw me-2 fa-map-marker-alt"></i> {{ suggestion.description }}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                      
                     </div>
+                  
+                      
                   </div>
                   <div class="hljs-container rounded-bottom">
                     <pre><code class="xml hljs language-xml" data-url="assets/data/form-elements/code-2.json" data-highlighted="yes"></code></pre>
@@ -63,10 +53,36 @@
               </div>
         </div>
         <div class="col-xl-4">
-            
-        </div>
-      
-      </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group mb-3">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Add Delivery Note" rows="2"></textarea>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" (click)="createPayload()" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">user will pickup delivery</label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" [(ngModel)]="scheduledOrderChecked">
+                  <label class="form-check-label" for="defaultCheck2">Scheduled order</label>
+                </div>
+                <div *ngIf="scheduledOrderChecked">
+                  <div class="mb-3">
+                    <input type="date" class="form-control" id="datepicker-default" placeholder="dd/mm/yyyy">
+                  </div> 
+                  <div class="mb-3">
+                    <div class="input-group bootstrap-timepicker timepicker">
+                      <input id="timepicker-default" type="text" class="form-control">
+                      <span class="input-group-addon input-group-text">
+                        <i class="fa fa-clock"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
     </div>
   </div>
 </div>

@@ -1,0 +1,36 @@
+.autocomplete-dropdown-container {
+    position: relative;
+  }
+  
+  .suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,.1);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* You can set max-height as you need */
+    overflow-y: auto; /* Allows scrolling */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f6f6f6;
+  }
+  
+  /* Styling for icons */
+  .fa-map-marker {
+    color: #555;
+    margin-right: 5px;
+  }
+  
