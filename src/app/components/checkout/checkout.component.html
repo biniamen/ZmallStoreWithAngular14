@@ -2,7 +2,21 @@
 
 <div class="checkout-page" style="padding-top: 100px;">
     <div class="user-information">
-        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="checkoutForm" >
+            <div class="mb-3">
+                <label for="exampleInputUsername1" class="form-label">Address</label>
+                <input type="text" [(ngModel)]="search" class="form-control" (input)="onInput()"
+                    placeholder="Enter location">
+                <div *ngIf="suggestions.length">
+                    <ul>
+                        <li class="dropdown-item" *ngFor="let suggestion of suggestions"
+                            (click)="onSuggestionClick(suggestion)">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> {{ suggestion.description
+                            }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="form-row">
                 <input type="text" formControlName="firstName" placeholder="Enter First Name" />
                 <input type="text" formControlName="lastName" placeholder="Enter Last Name" />
@@ -22,9 +36,9 @@
     </div>
 
     <div class="map-container">
-        <google-map [center]="center" [zoom]="zoom" (mapClick)="mapClicked($event)">
+        <!-- <google-map [center]="center" [zoom]="zoom" (mapClick)="mapClicked($event)">
             <map-marker [position]="center"></map-marker>
-          </google-map>
+          </google-map> -->
     </div>
 
 </div>
