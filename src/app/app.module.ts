@@ -19,8 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
 import { CartService } from './services/cart.service';
 import { OrderComponent } from './components/order/order.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { OrdercheckoutComponent } from './components/ordercheckout/ordercheckout.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     OrderHistoryComponent,
     CreateOrderComponent,
     OrderComponent,
-    CheckoutComponent
+    OrdercheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +44,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
     HttpClientModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    GoogleMapsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right',

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-storelogin',
