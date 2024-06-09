@@ -1,0 +1,98 @@
+.store-profile {
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  
+  .store-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .store-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .store-info {
+    flex-grow: 1;
+  }
+  
+  .store-info h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #007BFF;
+  }
+  
+  .store-info .edit-button {
+    background-color: #FF4B5C;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .store-basic-info p {
+    margin: 5px 0;
+  }
+  
+  .store-contact,
+  .sub-admin-details,
+  .upload-documents {
+    margin-bottom: 20px;
+  }
+  
+  .store-contact h2,
+  .sub-admin-details h2,
+  .upload-documents h2 {
+    font-size: 20px;
+    color: #007BFF;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+  
+  .add-sub-admin-button,
+  .edit-button,
+  .delete-button {
+    background-color: #FF4B5C;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  input {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: calc(100% - 12px);
+  }
+  

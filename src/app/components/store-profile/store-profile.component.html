@@ -1,0 +1,114 @@
+<div class="container" style="padding-top: 50px">
+    <div class="row justify-content-center">
+      <div class="col-xl-12">
+        <div class="store-profile" *ngIf="storeDetail">
+            <div class="store-header">
+              <img [src]="'https://test.zmallapp.com/' + storeDetail.image_url" alt="{{ storeDetail.name }}" class="store-image" />
+              <div class="store-info">
+                <h1>{{ storeDetail.name }}</h1>
+                <button class="edit-button" (click)="toggleEditMode()">
+                  {{ editMode ? 'Cancel' : 'Edit' }}
+                </button>
+                <div class="store-basic-info">
+                  <p>Country:
+                    <span *ngIf="!editMode">{{ storeDetail.country_details.country_name }}</span>
+                    <input *ngIf="editMode" [(ngModel)]="storeDetail.country_details.country_name" />
+                  </p>
+                  <p>City:
+                    <span *ngIf="!editMode">{{ storeDetail.city_details.city_name }}</span>
+                    <input *ngIf="editMode" [(ngModel)]="storeDetail.city_details.city_name" />
+                  </p>
+                  <p>Delivery Type:
+                    <span *ngIf="!editMode">{{ storeDetail.delivery_details.delivery_name }}</span>
+                    <input *ngIf="editMode" [(ngModel)]="storeDetail.delivery_details.delivery_name" />
+                  </p>
+                  <p>Referral Code:
+                    <span *ngIf="!editMode">{{ storeDetail.referral_code }}</span>
+                    <input *ngIf="editMode" [(ngModel)]="storeDetail.referral_code" />
+                  </p>
+                  <p>Wallet:
+                    <span *ngIf="!editMode">{{ storeDetail.wallet | currency:storeDetail.wallet_currency_code }}</span>
+                    <input *ngIf="editMode" [(ngModel)]="storeDetail.wallet" type="number" />
+                  </p>
+                  <p>Total Referred:
+                    <span *ngIf="!editMode">{{ storeDetail.total_referrals }}</span>
+                    <input *ngIf="editMode" [(ngModel)]="storeDetail.total_referrals" type="number" />
+                  </p>
+                </div>
+              </div>
+            </div>
+          
+            <div class="store-contact">
+              <h2>Contact Information</h2>
+              <p>Name:
+                <span *ngIf="!editMode">{{ storeDetail.name }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.name" />
+              </p>
+              <p>Email:
+                <span *ngIf="!editMode">{{ storeDetail.email }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.email" />
+              </p>
+              <p>Phone Number:
+                <span *ngIf="!editMode">{{ storeDetail.phone }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.phone" />
+              </p>
+              <p>Address:
+                <span *ngIf="!editMode">{{ storeDetail.address }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.address" />
+              </p>
+              <p>Website URL:
+                <span *ngIf="!editMode">{{ storeDetail.website_url || 'N/A' }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.website_url" />
+              </p>
+              <p>Longitude:
+                <span *ngIf="!editMode">{{ storeDetail.location[1] }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.location[1]" type="number" />
+              </p>
+              <p>Latitude:
+                <span *ngIf="!editMode">{{ storeDetail.location[0] }}</span>
+                <input *ngIf="editMode" [(ngModel)]="storeDetail.location[0]" type="number" />
+              </p>
+            </div>
+          
+            <div *ngIf="editMode">
+              <button (click)="saveChanges()">Save</button>
+            </div>
+          
+            <div class="sub-admin-details">
+              <h2>Sub Admin Details</h2>
+              <button class="add-sub-admin-button">Add Sub Admin</button>
+              <table>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Actions</th>
+                </tr>
+                <tr>
+                  <td>{{ storeDetail.name }}</td>
+                  <td>{{ storeDetail.email }}</td>
+                  <td>{{ storeDetail.phone }}</td>
+                  <td>
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          
+            <div class="upload-documents">
+              <h2>Upload Documents</h2>
+              <table>
+                <tr>
+                  <th>Name</th>
+                  <th>Unique Code</th>
+                  <th>Expiry Date</th>
+                </tr>
+                <!-- Document rows go here -->
+              </table>
+            </div>
+          </div>
+          
+  </div>
+  </div>
+  </div>

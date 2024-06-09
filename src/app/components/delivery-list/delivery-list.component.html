@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="filter-section">
+      <input type="text" placeholder="Search..." (input)="updateSearchValue($event)" />
+      <button (click)="getDeliveryList()">Apply</button>
+    </div>
+    <div class="content-section">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Assigned Date</th>
+            <th>User</th>
+            <th>Deliveryman</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of deliveryList" (click)="viewDetails(item)">
+            <td>{{ item.unique_id }}</td>
+            <td>{{ item.updated_at | date: 'dd MMM yyyy HH:mm' }}</td>
+            <td>{{ item.destination_addresses[0]?.user_details?.name }}</td>
+            <td>{{ item.deliveryman }}</td>
+            <td>
+              <span class="status" [class.assigned]="item.delivery_status === 9">Assigned</span>
+            </td>
+            <td>
+              <button (click)="viewDetails(item)">Detail</button>
+              <button (click)="cancelOrder(item)">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="map-section" *ngIf="selectedDelivery">
+        <div>Delivery Address - {{ selectedDelivery.destination_addresses[0]?.address }} ({{ selectedDelivery.order_payment_detail?.total_distance }} Km)</div>
+        <div id="mapContainer" #mapContainer></div>
+      </div>
+    </div>
+  </div>
+  

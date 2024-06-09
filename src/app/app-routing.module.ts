@@ -6,6 +6,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrdercheckoutComponent } from './components/ordercheckout/ordercheckout.component';
+import { StoreProfileComponent } from './components/store-profile/store-profile.component';
+import { DeliveryListComponent } from './components/delivery-list/delivery-list.component';
+import { SettingComponent } from './components/setting/setting.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/orderhistory', pathMatch: 'full' },
@@ -14,6 +17,10 @@ const routes: Routes = [
   { path: 'create_order', component: CreateOrderComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   { path: 'checkout', component: OrdercheckoutComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: StoreProfileComponent, canActivate: [AuthGuard]},
+  { path: 'delivery-list', component: DeliveryListComponent, canActivate: [AuthGuard]},
+  { path: 'setting', component: SettingComponent, canActivate: [AuthGuard]},
+
 
 ];
 

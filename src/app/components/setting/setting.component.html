@@ -1,0 +1,163 @@
+<div class="container" id="settings-page">
+    <div class="settings-container">
+        <form #settingUpdateForm="ngForm">
+            <!-- First Level -->
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-card class="custom-card">
+                        <mat-card-header>
+                            <mat-card-title>Order Price Settings</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Tax on Item</mat-label>
+                                <input matInput [(ngModel)]="storeDetail.item_tax" name="item_tax">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Minimum Order Price</mat-label>
+                                <input matInput [(ngModel)]="storeDetail.min_order_price" name="min_order_price">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Maximum Item Quantity User Can Add</mat-label>
+                                <input matInput [(ngModel)]="storeDetail.max_item_quantity_add_by_user" name="max_item_quantity_add_by_user">
+                            </mat-form-field>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_ask_estimated_time_for_ready_order" name="is_ask_estimated_time_for_ready_order">Assign to Deliveryman when order is accepted</mat-slide-toggle>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-4">
+                    <mat-card class="custom-card">
+                        <mat-card-header>
+                            <mat-card-title>Order Cancellation Settings</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_order_cancellation_charge_apply" name="is_order_cancellation_charge_apply">Charge</mat-slide-toggle>
+                            <div *ngIf="storeDetail.is_order_cancellation_charge_apply">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Charge Type</mat-label>
+                                    <mat-select [(ngModel)]="storeDetail.order_cancellation_charge_type" name="order_cancellation_charge_type">
+                                        <mat-option value="1">Percentage</mat-option>
+                                        <mat-option value="2">Absolute</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Charge Above</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.order_cancellation_charge_for_above_order_price" name="order_cancellation_charge_for_above_order_price">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Charge Value</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.order_cancellation_charge_value" name="order_cancellation_charge_value">
+                                </mat-form-field>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-4">
+                    <mat-card class="custom-card">
+                        <mat-card-header>
+                            <mat-card-title>Schedule Order Settings</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_taking_schedule_order" name="is_taking_schedule_order">Can user schedule order?</mat-slide-toggle>
+                            <div *ngIf="storeDetail.is_taking_schedule_order">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Min. time after which user can schedule</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.schedule_order_create_after_minute" name="schedule_order_create_after_minute">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Notify store before time to prepare order</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.inform_schedule_order_before_min" name="inform_schedule_order_before_min">
+                                </mat-form-field>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <!-- Second Level -->
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-card class="custom-card">
+                        <mat-card-header>
+                            <mat-card-title>Delivery Settings</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_store_pay_delivery_fees" name="is_store_pay_delivery_fees">Delivery fee on store</mat-slide-toggle>
+                            <div *ngIf="storeDetail.is_store_pay_delivery_fees">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Free Delivery Above Price</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.free_delivery_for_above_order_price" name="free_delivery_for_above_order_price">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Free Delivery Within Radius</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.free_delivery_within_radius" name="free_delivery_within_radius">
+                                </mat-form-field>
+                            </div>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Min. Delivery Time</mat-label>
+                                <input matInput [(ngModel)]="storeDetail.delivery_time" name="delivery_time">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Max. Delivery Time</mat-label>
+                                <input matInput [(ngModel)]="storeDetail.delivery_time_max" name="delivery_time_max">
+                            </mat-form-field>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_provide_delivery_anywhere" name="is_provide_delivery_anywhere">Provide Delivery Anywhere</mat-slide-toggle>
+                            <div *ngIf="!storeDetail.is_provide_delivery_anywhere">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Delivery Radius (In KM)</mat-label>
+                                    <input matInput [(ngModel)]="storeDetail.delivery_radius" name="delivery_radius">
+                                </mat-form-field>
+                            </div>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_provide_laundry_service" name="is_provide_laundry_service">Provides Laundry</mat-slide-toggle>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-4">
+                    <mat-card class="custom-card">
+                        <mat-card-header>
+                            <mat-card-title>General Settings</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_business" name="is_business">Business</mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_store_busy" name="is_store_busy">Busy</mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="storeDetail.is_visible" name="is_visible">Visible</mat-slide-toggle>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-4">
+                    <mat-card class="custom-card">
+                        <mat-card-header>
+                            <mat-card-title>Operation Time Settings</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-tab-group>
+                                <mat-tab label="Sun">
+                                    <mat-slide-toggle [(ngModel)]="storeDetail.store_time[0].is_store_open_full_time" name="sun_is_store_open_full_time">Open Full Time</mat-slide-toggle>
+                                    <mat-slide-toggle [(ngModel)]="storeDetail.store_time[0].is_store_open" name="sun_is_store_open" [disabled]="storeDetail.store_time[0].is_store_open_full_time">Open</mat-slide-toggle>
+                                    <div *ngIf="!storeDetail.store_time[0].is_store_open_full_time && storeDetail.store_time[0].is_store_open">
+                                        <button mat-button (click)="showTimePicker(0)">Add Time</button>
+                                        <div *ngIf="showClockFlag[0]">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Opening Time</mat-label>
+                                                <input matInput type="time" [(ngModel)]="storeDetail.store_time[0].day_time[0].store_open_time" name="sun_store_open_time">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Closing Time</mat-label>
+                                                <input matInput type="time" [(ngModel)]="storeDetail.store_time[0].day_time[0].store_close_time" name="sun_store_close_time">
+                                            </mat-form-field>
+                                            <button mat-button (click)="hideTimePicker(0)">Close Time</button>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <!-- Repeat for each day of the week -->
+                            </mat-tab-group>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="buttons">
+                <button mat-raised-button color="primary" type="submit" (click)="updateSetting(settingUpdateForm.value)">Submit</button>
+                <button mat-raised-button color="warn" type="button" (click)="resetForm()">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>

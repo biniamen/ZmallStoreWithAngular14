@@ -1,0 +1,36 @@
+.container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.settings-container {
+    margin: 20px 0;
+}
+
+.custom-card {
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.custom-card mat-card-header {
+    background-color: #e0e0e0;
+    border-radius: 8px 8px 0 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+}
