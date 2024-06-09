@@ -8,7 +8,7 @@
                         <mat-card-header>
                             <mat-card-title>Order Price Settings</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content *ngIf="storeDetail">
                             <mat-form-field appearance="outline">
                                 <mat-label>Tax on Item</mat-label>
                                 <input matInput [(ngModel)]="storeDetail.item_tax" name="item_tax">
@@ -30,7 +30,7 @@
                         <mat-card-header>
                             <mat-card-title>Order Cancellation Settings</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content *ngIf="storeDetail">
                             <mat-slide-toggle [(ngModel)]="storeDetail.is_order_cancellation_charge_apply" name="is_order_cancellation_charge_apply">Charge</mat-slide-toggle>
                             <div *ngIf="storeDetail.is_order_cancellation_charge_apply">
                                 <mat-form-field appearance="outline">
@@ -57,7 +57,7 @@
                         <mat-card-header>
                             <mat-card-title>Schedule Order Settings</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content *ngIf="storeDetail">
                             <mat-slide-toggle [(ngModel)]="storeDetail.is_taking_schedule_order" name="is_taking_schedule_order">Can user schedule order?</mat-slide-toggle>
                             <div *ngIf="storeDetail.is_taking_schedule_order">
                                 <mat-form-field appearance="outline">
@@ -80,7 +80,7 @@
                         <mat-card-header>
                             <mat-card-title>Delivery Settings</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content *ngIf="storeDetail">
                             <mat-slide-toggle [(ngModel)]="storeDetail.is_store_pay_delivery_fees" name="is_store_pay_delivery_fees">Delivery fee on store</mat-slide-toggle>
                             <div *ngIf="storeDetail.is_store_pay_delivery_fees">
                                 <mat-form-field appearance="outline">
@@ -116,7 +116,7 @@
                         <mat-card-header>
                             <mat-card-title>General Settings</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content *ngIf="storeDetail">
                             <mat-slide-toggle [(ngModel)]="storeDetail.is_business" name="is_business">Business</mat-slide-toggle>
                             <mat-slide-toggle [(ngModel)]="storeDetail.is_store_busy" name="is_store_busy">Busy</mat-slide-toggle>
                             <mat-slide-toggle [(ngModel)]="storeDetail.is_visible" name="is_visible">Visible</mat-slide-toggle>
@@ -128,27 +128,26 @@
                         <mat-card-header>
                             <mat-card-title>Operation Time Settings</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content *ngIf="storeDetail?.store_time">
                             <mat-tab-group>
-                                <mat-tab label="Sun">
-                                    <mat-slide-toggle [(ngModel)]="storeDetail.store_time[0].is_store_open_full_time" name="sun_is_store_open_full_time">Open Full Time</mat-slide-toggle>
-                                    <mat-slide-toggle [(ngModel)]="storeDetail.store_time[0].is_store_open" name="sun_is_store_open" [disabled]="storeDetail.store_time[0].is_store_open_full_time">Open</mat-slide-toggle>
-                                    <div *ngIf="!storeDetail.store_time[0].is_store_open_full_time && storeDetail.store_time[0].is_store_open">
-                                        <button mat-button (click)="showTimePicker(0)">Add Time</button>
-                                        <div *ngIf="showClockFlag[0]">
+                                <mat-tab *ngFor="let day of storeDetail.store_time; let i = index" [label]="getDayLabel(i)">
+                                    <mat-slide-toggle [(ngModel)]="day.is_store_open_full_time" [name]="'is_store_open_full_time_' + i">Open Full Time</mat-slide-toggle>
+                                    <mat-slide-toggle [(ngModel)]="day.is_store_open" [name]="'is_store_open_' + i" [disabled]="day.is_store_open_full_time">Open</mat-slide-toggle>
+                                    <div *ngIf="!day.is_store_open_full_time && day.is_store_open">
+                                        <button mat-button (click)="showTimePicker(i)">Add Time</button>
+                                        <div *ngIf="showClockFlag[i]">
                                             <mat-form-field appearance="outline">
                                                 <mat-label>Opening Time</mat-label>
-                                                <input matInput type="time" [(ngModel)]="storeDetail.store_time[0].day_time[0].store_open_time" name="sun_store_open_time">
+                                                <input matInput type="time" [(ngModel)]="day.day_time[0].store_open_time" [name]="'store_open_time_' + i">
                                             </mat-form-field>
                                             <mat-form-field appearance="outline">
                                                 <mat-label>Closing Time</mat-label>
-                                                <input matInput type="time" [(ngModel)]="storeDetail.store_time[0].day_time[0].store_close_time" name="sun_store_close_time">
+                                                <input matInput type="time" [(ngModel)]="day.day_time[0].store_close_time" [name]="'store_close_time_' + i">
                                             </mat-form-field>
-                                            <button mat-button (click)="hideTimePicker(0)">Close Time</button>
+                                            <button mat-button (click)="hideTimePicker(i)">Close Time</button>
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <!-- Repeat for each day of the week -->
                             </mat-tab-group>
                         </mat-card-content>
                     </mat-card>

@@ -29,6 +29,7 @@ import { DeliveryListComponent } from './components/delivery-list/delivery-list.
 import { SettingComponent } from './components/setting/setting.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
+import { EarningComponent } from './components/earning/earning.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatOptionModule } from '@angular/material/core';
     StoreProfileComponent,
     DeliveryListComponent,
     SettingComponent,
+    EarningComponent,
   ],
   imports: [
     BrowserModule,

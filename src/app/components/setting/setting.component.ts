@@ -17,15 +17,17 @@ export class SettingComponent implements OnInit {
   }
 
   getStoreDetails() {
+    const storeId = localStorage.getItem('store_id');
+ const serverToken = localStorage.getItem('server_token');
     const payload = {
-      store_id: '6422d06d8b4ace2d10b9aff9',
-      server_token: 'tOkQeWKznvQyZySVu2TFwE3OsKQRWJhD'
+      store_id: storeId,
+      server_token: serverToken
     };
 
     this.http.post('https://test.zmallapp.com/api/store/get_store_data', payload).subscribe((response: any) => {
       if (response.success) {
         this.storeDetail = response.store_detail;
-        console.log(this.storeDetail); // Check the console to verify data
+        console.log(this.storeDetail); // Verify the fetched data in the console
       }
     });
   }
@@ -46,5 +48,10 @@ export class SettingComponent implements OnInit {
   resetForm() {
     // Add logic to reset the form
     this.getStoreDetails();
+  }
+
+  getDayLabel(index: number): string {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return days[index];
   }
 }
